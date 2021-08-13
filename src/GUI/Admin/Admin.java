@@ -397,6 +397,16 @@ public class Admin extends javax.swing.JFrame {
         );
         homeBtn.addActionListener(ac);
         homeBtn.setActionCommand(homeBtn.getActionCommand());
+        
+        //Them su kien tu menu trang chu
+        
+        for(Component c : content.getComponents()){
+            if(c instanceof Home){
+                for(Component c1 : ((Home) c).getComponents()){
+                    ((JButton)c1).addActionListener(ac);
+                }
+            }
+        }
     }
 
     private void displayNameStaff(NhanVien nv) {

@@ -77,7 +77,7 @@ public class SachDao {
                 + "`HinhAnh`='"+s.getHinhAnh()+"',"
                 + "`PhanTramGiamGia`="+s.getPhanTramGiamGia()+","
                 + "`TacGia`='"+s.getTacGia()+"' "
-                + "WHERE `MaSach` = "+s.getMaSach()+";";
+                + "WHERE `MaSach` = "+s.getMaSach()+" AND `MaPhieuNhap` = "+s.getMaPhieuNhap()+";";
         return conn.sqlUpdate(qry);
     }
     

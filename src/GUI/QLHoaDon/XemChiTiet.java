@@ -14,6 +14,7 @@ import BUS.NhanVienBus;
 import BUS.SachBus;
 import BUS.TaiKhoanBus;
 import DTO.ChiTietHoaDon;
+import DTO.Date;
 import DTO.HoaDon;
 import DTO.NhanVien;
 import ProcessingFunction.SendEmail;
@@ -220,10 +221,12 @@ public class XemChiTiet extends javax.swing.JFrame {
     }
 
     private void loadContent(HoaDon bill, ArrayList<ChiTietHoaDon> data) {
+        Date dates = kmbus.getDateKMById(bill.getMaKhuyenMai());
+        
         this.idSale.setText("Mã hóa đơn : " + String.valueOf(bill.getMaHoaDon()));
         nameCus.setText("Tên khách hàng : " + khbus.getNameById(bill.getMaKhachHang()));
         nameStaff.setText("Tên nhân viên : " + nvbus.getNameById(bill.getMaNhanVien()));
-        saleId.setText("Mã khuyến mãi : " + bill.getMaKhuyenMai());
+        saleId.setText("Mã khuyến mãi : ( Ngày :" + dates.getDay() + "/" + dates.getMonth() + ") Giảm :" + kmbus.getDecreaseById(bill.getMaKhuyenMai()) + "%");
         date.setText("Ngày :" + bill.getNgayLap().toString());
         time.setText("Thời gian : " + bill.getGioLap().toString());
         String statusBill = "";

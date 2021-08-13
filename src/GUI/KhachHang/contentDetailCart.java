@@ -46,11 +46,11 @@ public class contentDetailCart extends javax.swing.JPanel {
                 +")"
         );
         image.setSize(80, 100);
-        image.setIcon(new ImageIcon(CopyImage.resizeImage(".\\src\\Book_Image\\" + s.getHinhAnh(), image)));
+        image.setIcon(new ImageIcon(CopyImage.resizeImage("./src/Book_Image/" + s.getHinhAnh(), image)));
         bookNumberSelect.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                System.out.println(bookNumberSelect.getValue());
+                //System.out.println(bookNumberSelect.getValue());
             }
         });
     }

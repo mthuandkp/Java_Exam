@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
  * @author MTHUAN
  */
 public class ConnectionDB {
-    private static String URL = "jdbc:mysql://localhost:3308/cuahangsach?zeroDateTimeBehavior=convertToNull";
+    private static String URL = "jdbc:mysql://localhost:3306/cuahangsach?zeroDateTimeBehavior=convertToNull";
     private static String USER = "root";
     private static String PASS = "123456";
     

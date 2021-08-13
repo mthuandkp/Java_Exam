@@ -199,6 +199,11 @@ public class ThemHoaDon extends javax.swing.JFrame {
         background.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
 
         saleId.setFont(new java.awt.Font("Times New Roman", 0, 30)); // NOI18N
+        saleId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saleIdActionPerformed(evt);
+            }
+        });
         background.add(saleId, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, 410, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -214,6 +219,10 @@ public class ThemHoaDon extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void saleIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saleIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_saleIdActionPerformed
 
     /**
      * @param args the command line arguments
@@ -396,7 +405,7 @@ public class ThemHoaDon extends javax.swing.JFrame {
                             return;
                         }
 
-                        JOptionPane.showMessageDialog(null, "Thêm thành công");
+                        JOptionPane.showMessageDialog(null, "Thêm hóa đơn thành công");
                         //Xoa het moi thu cap nhatj lai ma hoa don
                         idBill.setText(String.valueOf(hdbus.createIdAuto()));
                         cusId.setSelectedIndex(0);
@@ -404,6 +413,7 @@ public class ThemHoaDon extends javax.swing.JFrame {
                         removeAllTableData();
                         bookId.setSelectedIndex(0);
                         numberBook.setText("");
+                        data.removeAll(data);
                         
                         break;
                     }
@@ -499,14 +509,14 @@ public class ThemHoaDon extends javax.swing.JFrame {
             sum += ct.getSoLuong() * sachbus.getPriceBookFromId(ct.getMaSach());
         }
         if (decreaseSale == 0) {
-            sumPrice.setText("Tổng : " + ProcessingFunction.Other.convetNumberToMoney(String.valueOf(sum)));
+            sumPrice.setText("Tổng : " + ProcessingFunction.Other.convetNumberToMoney(String.valueOf(sum)) + " VNĐ");
             return;
         }
         int price = (int) (sum * (1 - decreaseSale / 100.0));
 
         sumPrice.setText("Tổng : "
                 + ProcessingFunction.Other.convetNumberToMoney(String.valueOf(price))
-                + "(" + ProcessingFunction.Other.convetNumberToMoney(String.valueOf(sum)) + ")");
+                + "(" + ProcessingFunction.Other.convetNumberToMoney(String.valueOf(sum)) + ")" + " VNĐ");
 
     }
 
@@ -527,7 +537,7 @@ public class ThemHoaDon extends javax.swing.JFrame {
                 saleId.addItem(String.valueOf(km.getMaKhuyenMai()) + "-Không khuyến mãi");
                 continue;
             }
-            saleId.addItem(String.valueOf(km.getMaKhuyenMai()) + "-" + dateSale + "/" + month);
+            saleId.addItem(String.valueOf(km.getMaKhuyenMai()) + "-" + dateSale + "/" + month + " - " + km.getPhanTramGiam() + "%");
         }
     }
 }

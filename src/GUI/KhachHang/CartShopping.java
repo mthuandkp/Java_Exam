@@ -15,7 +15,6 @@ import DTO.HoaDon;
 import DTO.KhachHang;
 import DTO.KhuyenMai;
 import DTO.TaiKhoan;
-import GUI.Login.Login;
 import ProcessingFunction.Other;
 import ProcessingFunction.SendEmail;
 import ProcessingFunction.convertMoneyToVietnameseText;
@@ -27,7 +26,6 @@ import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -38,7 +36,6 @@ import javax.swing.JSpinner;
 import javax.swing.JViewport;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import sun.java2d.d3d.D3DRenderQueue;
 
 /**
  *
@@ -72,6 +69,7 @@ public class CartShopping extends javax.swing.JPanel {
         loadData();
         countPrice();
         performEvent();
+        performEventSubmit();
     }
 
     public KhachHang getKh() {
@@ -188,7 +186,6 @@ public class CartShopping extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void loadData() {
-        
         Container con = new Container();
         for (ChiTietHoaDon ct : dataCart) {
             JPanel p = new contentDetailCart(ct);
@@ -226,7 +223,7 @@ public class CartShopping extends javax.swing.JPanel {
                                         } else if (value.contains("phantram")) {
                                             //Get sale of book
                                             decrease = getValueFormRightString(value);
-                                            
+
                                         }
                                     } else if (c3 instanceof JSpinner) {
                                         num = Integer.valueOf(String.valueOf(((JSpinner) c3).getValue()));
@@ -240,7 +237,7 @@ public class CartShopping extends javax.swing.JPanel {
             }
         }
         sumCart.setText("Tổng tiền : " + Other.convetNumberToMoney(String.valueOf(sum)) + "VNĐ");
-        
+
         ArrayList<KhuyenMai> dataKM = kmbus.getAllData();
         int decreaseSale = 0;
         for (KhuyenMai km : dataKM) {
@@ -255,7 +252,7 @@ public class CartShopping extends javax.swing.JPanel {
                 + Other.convetNumberToMoney(String.valueOf((int) (sum)))
                 + ")"
         );
-        
+
         readMoney.setText("(" + convertMoneyToVietnameseText.convertNumberToVietnameseText(String.valueOf((int) (sum * (1 - decreaseSale / 100.0)))) + ")");
         readMoney.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.yellow));
     }
@@ -268,6 +265,7 @@ public class CartShopping extends javax.swing.JPanel {
         try {
             if (i >= 0) {
                 return Integer.valueOf(s.substring(i + 1));
+
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -300,7 +298,7 @@ public class CartShopping extends javax.swing.JPanel {
         this.price = price;
     }
 
-    private void performEvent() {
+    private void performEventSubmit() {
         submitBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -309,7 +307,11 @@ public class CartShopping extends javax.swing.JPanel {
                     return;
                 }
                 if (kh == null) {
-                    JOptionPane.showMessageDialog(null, "Bạn chưa đăng nhập.Vui lòng đăng nhập để xác nhận đơn hàng" + kh);
+                    JOptionPane.showMessageDialog(null, "Bạn chưa đăng nhập.Vui lòng đăng nhập để xác nhận đơn hàng");
+                    return;
+                }
+
+                if (JOptionPane.showConfirmDialog(null, "Bạn có muốn đặt hàng ?", "Xác nhân đặt hàng ", 0) != 0) {
                     return;
                 }
                 LocalDate date = LocalDate.now();
@@ -323,10 +325,10 @@ public class CartShopping extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(null, "Không thể thêm  hóa đơn");
                 }
                 //Tao Chi tiet hoa don
-                for(ChiTietHoaDon ct : dataCart){
+                for (ChiTietHoaDon ct : dataCart) {
                     ct.setMaHoaDon(idBill);
                 }
-                if (cthdbus.insertArrayToDB(dataCart) == false) {
+                if (sachbus.decreaseNumberBook(dataCart) == false || cthdbus.insertArrayToDB(dataCart) == false) {
                     JOptionPane.showMessageDialog(null, "Không thể thêm chi tiết cho hóa đơn");
                     return;
                 }
@@ -348,6 +350,9 @@ public class CartShopping extends javax.swing.JPanel {
                 }
             }
         });
+    }
+
+    private void performEvent() {
 
         ActionListener ac = new ActionListener() {
             @Override
@@ -394,17 +399,19 @@ public class CartShopping extends javax.swing.JPanel {
                     }
                     int value = Integer.valueOf(String.valueOf(sp.getValue()));
                     if (value <= 0 || value > sachbus.getNumberBookById(id)) {
+                        //So luong khong hop le
+                        //Gan ve so luong truoc do
                         for (ChiTietHoaDon ct : dataCart) {
                             if (ct.getMaSach() == id) {
                                 sp.setValue(ct.getSoLuong());
+                                JOptionPane.showMessageDialog(null, "số lượng phải nằm trong khoảng [1;" + sachbus.getNumberBookById(id) + "]");
                                 throw new Exception();
                             }
                         }
                     }
                     for (ChiTietHoaDon ct : dataCart) {
                         if (ct.getMaSach() == id) {
-
-                            sachbus.addNumberBook(id, ct.getMaPhieuNhap(), ct.getSoLuong() - value);
+                            //sachbus.addNumberBook(id, ct.getMaPhieuNhap(), ct.getSoLuong() - value);
                             ct.setSoLuong(value);
                             countPrice();
                         }
@@ -412,7 +419,6 @@ public class CartShopping extends javax.swing.JPanel {
                     loadData();
                     performEvent();
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null, "Số lượng không hợp lệ hoặc không đủ số lượng");
                     return;
                 }
             }
@@ -443,12 +449,6 @@ public class CartShopping extends javax.swing.JPanel {
                     }
                 }
             }
-        }
-    }
-
-    public void recoveryNumberBook() {
-        for (ChiTietHoaDon ct : dataCart) {
-            sachbus.addNumberBook(ct.getMaSach(), ct.getMaPhieuNhap(), ct.getSoLuong());
         }
     }
 }

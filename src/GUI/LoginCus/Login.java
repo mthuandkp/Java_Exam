@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI.Login;
+package GUI.LoginCus;
 
 import BUS.TaiKhoanBus;
 import DTO.ChiTietHoaDon;
@@ -225,7 +225,7 @@ public class Login extends javax.swing.JFrame {
                 }
                 TaiKhoan tk = tkbus.getAccountByUser(username.getText());
                 if (tk.getMatKhau().compareTo(String.valueOf(password.getPassword())) != 0) {
-                    JOptionPane.showMessageDialog(null, "Sai mật khẩu rồi nè");
+                    JOptionPane.showMessageDialog(null, "Sai mật khẩu");
                     if (JOptionPane.showConfirmDialog(null, "Bạn có muốn dùng khôi phục mật khẩu không ?", "Xác nhận", 0) == 0) {
 
                     }

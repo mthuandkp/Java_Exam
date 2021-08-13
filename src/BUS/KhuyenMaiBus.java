@@ -10,6 +10,7 @@ package BUS;
  * @author ANHKHOA
  */
 import DAO.KhuyenMaiDao;
+import DTO.Date;
 import DTO.KhuyenMai;
 import ProcessingFunction.ConnectionDB;
 import java.sql.ResultSet;
@@ -134,5 +135,22 @@ public class KhuyenMaiBus {
             }
         }
         return 1;
+    }
+    
+    public Date getDateKMById(int id){
+        ArrayList<KhuyenMai> data = getAllData();
+        String s = "0000-00-00";
+        for(KhuyenMai km : data){
+            if(km.getMaKhuyenMai() == id){
+                s = km.getNgayApDung().toString();
+                break;
+            }
+        }
+        
+        return new Date(
+                Integer.parseInt(s.substring(0, 4)),
+                Integer.parseInt(s.substring(5, 7)),
+                Integer.parseInt(s.substring(8, 10))
+        );
     }
 }

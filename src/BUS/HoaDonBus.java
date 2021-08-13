@@ -140,5 +140,17 @@ public class HoaDonBus {
     public boolean updateStaff(int id,int idStaff) {
         return hddao.updateStaff(id,idStaff);
     }
+
+    public ArrayList<HoaDon> getAllBillByIdCus(int maKhachHang) {
+        ArrayList<HoaDon> data = getAllData();
+        ArrayList<HoaDon> result = new ArrayList<>();
+        
+        for(HoaDon hd:data){
+            if(hd.getMaKhachHang() == maKhachHang){
+                result.add(hd);
+            }
+        }
+        return result;
+    }
     
 }

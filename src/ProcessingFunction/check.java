@@ -13,6 +13,7 @@ import java.util.ArrayList;
  */
 public class check {
     public static boolean checkValidDate(String s){
+        
         int count = 0;
         for (char a : s.toCharArray()){
             if(a == '/' || a == '-'){
@@ -20,39 +21,45 @@ public class check {
             }
         }
         
+        
         if(count !=2){
             return false;
         }
         
         for(char a : s.toCharArray()){
-            if((a > '9' || a < '0') && a!='/'){
+            if((a > '9' || a < '0') && a!='/' && a !='-'){
                 return false;
             }
         }
+        
+        
+        System.out.println("s = " + s);
         
         int i = 0;
         int begin = 0;
         count  = 0;
         ArrayList<String> str = new ArrayList<>();
-        while(i < s.length() && count < 2){
-            while(i < s.length() && count < 2 && s.charAt(i) != '/'){
+        while(i < s.length() && count <= 2){
+            while(i < s.length() && count <= 2 && s.charAt(i) != '/' && s.charAt(i) != '-'){
                 i++;
             }
             str.add(s.substring(begin,i));
+            count++;
             begin = i+1;
             i++;
         }
         
         //Kiem tra hop le ngay thang
         int day = Integer.valueOf(str.get(2));
-        int mounth = Integer.valueOf(str.get(1));
+        int month = Integer.valueOf(str.get(1));
         int year = Integer.valueOf(str.get(0));
         
-        if(mounth > 12 || mounth < 1){
+                
+        if(month > 12 || month < 1){
             return false;
         }
         
-        switch(mounth){
+        switch(month){
             case 1:
             case 3:
             case 5:
@@ -88,7 +95,7 @@ public class check {
                 break;
             }
         }
-        
+
         return true;
     }
     
@@ -161,6 +168,6 @@ public class check {
     }
     
     public static void main(String[] args) {
-        System.out.println(checkValidDate("2021/02/12"));
+        System.out.println(checkValidDate("2001-01-01"));
     }
 }

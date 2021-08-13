@@ -7,7 +7,6 @@ package GUI.LoginAdmin;
 
 import BUS.NhanVienBus;
 import GUI.Admin.Admin;
-import GUI.Login.*;
 import GUI.NVBanHang.NhanVienBanHang;
 import ProcessingFunction.*;
 import java.awt.*;

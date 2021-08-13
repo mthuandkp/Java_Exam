@@ -42,6 +42,7 @@ public class Product extends javax.swing.JPanel {
 
     SachBus sachbus = new SachBus();
     TheLoaiBus tlbus = new TheLoaiBus();
+    ArrayList<ChiTietHoaDon> cartDataProduct = new ArrayList<>();
     ArrayList<ChiTietHoaDon> cartData = new ArrayList<>();
 
     /**
@@ -51,7 +52,7 @@ public class Product extends javax.swing.JPanel {
         initComponents();
         initialization();
         loadContent();
-        performEvent();
+        //performEvent();
         performEventPro();
     }
 
@@ -348,59 +349,20 @@ public class Product extends javax.swing.JPanel {
                 if (value == 0) {
                     return;
                 }
-                addBookById(value);
-                loadContent();
-                performEvent();
-            }
-        };
-
-        //Lấy sự kiện button của từng quyển sách
-        Arrays.stream(scrollContent.getComponents()).forEach(c -> {
-            if (c instanceof JViewport) {
-                Arrays.stream(((JViewport) c).getComponents()).forEach(c1 -> {
-                    if (c1 instanceof Container) {
-                        Arrays.stream(((Container) c1).getComponents()).forEach(c2 -> {
-                            if (c2 instanceof ContentDetailBook) {
-                                Arrays.stream(((ContentDetailBook) c2).getComponents()).forEach(c3 -> {
-                                    if (c3 instanceof JPanel) {
-                                        Arrays.stream(((JPanel) c3).getComponents()).forEach(c4 -> {
-                                            if (c4 instanceof JButton) {
-                                                ((JButton) c4).addActionListener(ac);
-
-                                                //Tìm cái mã sách
-                                                Arrays.stream(((JPanel) c3).getComponents()).forEach(c5 -> {
-                                                    if (c5 instanceof JLabel) {
-                                                        String id = Other.convertTextToEnglish(((JLabel) c5).getText());
-                                                        if (id.contains("masach")) {
-                                                            ((JButton) c4).setActionCommand(String.valueOf(getidBookFromString(id)));
-                                                        }
-                                                    }
-                                                });
-                                            }
-                                        });
-                                    }
-                                });
-                            }
-                        });
-                    }
-                });
-            }
-        });
-    }
-    
-    
-    private void performEvent(ArrayList<Sach> data) {
-        //Sự kiện thêm vào giỏ
-        ActionListener ac = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int value = Integer.valueOf(e.getActionCommand());
-                if (value == 0) {
+                if(isExistId(cartData, value)){
+                    JOptionPane.showMessageDialog(null, "Sản phẩm này đã tồn tại trong giỏ hàng");
                     return;
                 }
-                addBookById(value);
-                loadContent(data);
-                performEvent(data);
+                if (addBookById(value)) {
+                    JOptionPane.showMessageDialog(null, "Thêm thành công ");
+
+                    /*String result = "";
+                    for (ChiTietHoaDon ct : cartDataProduct) {
+                        result += ct + "\n";
+                    }
+                    JOptionPane.showMessageDialog(null, result);*/
+                    return;
+                }
             }
         };
 
@@ -439,10 +401,11 @@ public class Product extends javax.swing.JPanel {
     }
 
     public ArrayList<ChiTietHoaDon> getCartData() {
-        return cartData;
+        return cartDataProduct;
     }
 
-    public void setCartData(ArrayList<ChiTietHoaDon> cartData) {
+    public void setCartData(ArrayList<ChiTietHoaDon> cartDataProduct,ArrayList<ChiTietHoaDon> cartData) {
+        this.cartDataProduct = cartDataProduct;
         this.cartData = cartData;
         loadContent();
         performEvent();
@@ -466,22 +429,35 @@ public class Product extends javax.swing.JPanel {
         }
     }
 
-    private void addBookById(int id) {
-        ChiTietHoaDon tmp = sachbus.addBookToCart(id);
-        boolean OK = true;
-        if (tmp == null) {
-            JOptionPane.showMessageDialog(null, "Không thể thêm,không đủ số lượng");
-            return;
-        }
-        for (ChiTietHoaDon ct : cartData) {
-            if (ct.getMaSach() == tmp.getMaSach() && ct.getMaPhieuNhap() == tmp.getMaPhieuNhap()) {
+    private boolean addBookById(int id) {
+//        ChiTietHoaDon tmp = sachbus.addBookToCart(id);
+//        boolean OK = true;
+//        if (tmp == null) {
+//            JOptionPane.showMessageDialog(null, "Không thể thêm,không đủ số lượng");
+//            return;
+//        }
+//        for (ChiTietHoaDon ct : cartDataProduct) {
+//            if (ct.getMaSach() == tmp.getMaSach() && ct.getMaPhieuNhap() == tmp.getMaPhieuNhap()) {
+//                ct.setSoLuong(ct.getSoLuong() + 1);
+//                JOptionPane.showMessageDialog(null, "Thêm thành công");
+//                return;
+//            }
+//        }
+//        JOptionPane.showMessageDialog(null, "Thêm thành công");
+//        cartDataProduct.add(tmp);
+
+        for (ChiTietHoaDon ct : cartDataProduct) {
+            //Them so luong sach da ton tai
+            if (ct.getMaSach() == id) {
                 ct.setSoLuong(ct.getSoLuong() + 1);
-                JOptionPane.showMessageDialog(null, "Thêm thành công");
-                return;
+
+                return true;
             }
         }
-        JOptionPane.showMessageDialog(null, "Thêm thành công");
-        cartData.add(tmp);
+        Sach book = sachbus.getBookById(id);
+        cartDataProduct.add(new ChiTietHoaDon(0, book.getMaPhieuNhap(), book.getMaSach(), 1));
+        cartData.add(new ChiTietHoaDon(0, book.getMaPhieuNhap(), book.getMaSach(), 0));
+        return true;
     }
 
     private void performEventPro() {
@@ -491,6 +467,7 @@ public class Product extends javax.swing.JPanel {
                 switch (e.getActionCommand()) {
                     case "Xem tất cả": {
                         loadContent();
+                        performEvent();
                         JOptionPane.showMessageDialog(null, "Đã hiển thị tất cả sản phẩm");
                         break;
                     }
@@ -547,16 +524,16 @@ public class Product extends javax.swing.JPanel {
         int bigger = 0;
         int smaller = 0;
         String NXB = "";
-        
+
         boolean OK = false;
-        for(Component c : search.getComponents()){
-            if(c instanceof JCheckBox && ((JCheckBox)c).isSelected()){
+        for (Component c : search.getComponents()) {
+            if (c instanceof JCheckBox && ((JCheckBox) c).isSelected()) {
                 OK = true;
                 break;
             }
         }
-        
-        if(OK == false){
+
+        if (OK == false) {
             JOptionPane.showMessageDialog(null, "Vui lòng chọn ít nhất 1 loại để tìm kiếm.");
             return;
         }
@@ -599,22 +576,17 @@ public class Product extends javax.swing.JPanel {
             }
             NXB = bookNXB.getText();
         }
-        
-        /*System.out.println(name);
-        System.out.println(typeName);
-        System.out.println(authorName);
-        System.out.println(NXB);*/
-        
+
         ArrayList<Sach> data = sachbus.searchUser(name, typeName, authorName, bigger, smaller, NXB);
-        
-        if(loadContent(data) == false || data.isEmpty()){
+
+        if (loadContent(data) == false || data.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Không thể tìm");
             return;
         }
         JOptionPane.showMessageDialog(null, "Tìm thành công");
         search.setVisible(false);
         scrollContent.setVisible(true);
-        performEvent(data);
+        performEvent();
     }
 
     private void loadNameType() {
@@ -624,8 +596,8 @@ public class Product extends javax.swing.JPanel {
             bookType.addItem(tl.getTenTheLoai());
         }
     }
-    
-    public boolean loadContent(ArrayList<Sach> data){
+
+    public boolean loadContent(ArrayList<Sach> data) {
         //Load Data
         int col = 3;
         int row = data.size() % 3 == 0 ? data.size() / 3 : data.size() / 3 + 1;
@@ -640,5 +612,14 @@ public class Product extends javax.swing.JPanel {
         container.setLayout(new GridLayout(row, col));
         scrollContent.getViewport().setView(container);
         return true;
+    }
+    
+    public boolean isExistId(ArrayList<ChiTietHoaDon> cartData,int id){
+        for(ChiTietHoaDon ct : cartData){
+            if(ct.getMaSach() == id){
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -67,30 +67,112 @@ public class LichSu extends javax.swing.JPanel {
     private void initComponents() {
 
         scrollContent = new javax.swing.JScrollPane();
+        sumOfBill = new javax.swing.JLabel();
+        waitSubmitBill = new javax.swing.JLabel();
+        submitedBill = new javax.swing.JLabel();
+        receivedBill = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(1170, 590));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        add(scrollContent, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 22, 1060, 327));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(scrollContent, javax.swing.GroupLayout.PREFERRED_SIZE, 1123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+        sumOfBill.setFont(new java.awt.Font("Roboto", 1, 36)); // NOI18N
+        sumOfBill.setForeground(new java.awt.Color(255, 0, 0));
+        sumOfBill.setText("Tổng số hóa đơn :");
+        add(sumOfBill, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 367, 615, -1));
+
+        waitSubmitBill.setFont(new java.awt.Font("Roboto", 0, 36)); // NOI18N
+        waitSubmitBill.setForeground(new java.awt.Color(239, 176, 31));
+        waitSubmitBill.setText("Chờ xác nhận :");
+        add(waitSubmitBill, new org.netbeans.lib.awtextra.AbsoluteConstraints(177, 416, 481, -1));
+
+        submitedBill.setFont(new java.awt.Font("Roboto", 0, 36)); // NOI18N
+        submitedBill.setForeground(new java.awt.Color(2, 156, 241));
+        submitedBill.setText("Đã Xác Nhận :");
+        add(submitedBill, new org.netbeans.lib.awtextra.AbsoluteConstraints(177, 471, 474, -1));
+
+        receivedBill.setFont(new java.awt.Font("Roboto", 0, 36)); // NOI18N
+        receivedBill.setForeground(new java.awt.Color(19, 0, 255));
+        receivedBill.setText("Đã Nhận :");
+        add(receivedBill, new org.netbeans.lib.awtextra.AbsoluteConstraints(177, 522, 427, -1));
+
+        jPanel1.setBackground(new java.awt.Color(2, 182, 116));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(scrollContent, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(106, Short.MAX_VALUE))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 140, Short.MAX_VALUE)
         );
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 410, 10, 140));
+
+        jPanel2.setBackground(new java.awt.Color(2, 182, 116));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 60, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
+        );
+
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 540, 60, 10));
+
+        jPanel3.setBackground(new java.awt.Color(2, 182, 116));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 60, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
+        );
+
+        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 430, 60, 10));
+
+        jPanel4.setBackground(new java.awt.Color(2, 182, 116));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 60, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
+        );
+
+        add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 490, 60, 10));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel receivedBill;
     private javax.swing.JScrollPane scrollContent;
+    private javax.swing.JLabel submitedBill;
+    private javax.swing.JLabel sumOfBill;
+    private javax.swing.JLabel waitSubmitBill;
     // End of variables declaration//GEN-END:variables
 
     private void initialization() {
@@ -99,19 +181,44 @@ public class LichSu extends javax.swing.JPanel {
 
     private void loadData() {
         if(khachhang == null) return;
-        ArrayList<HoaDon> data = hdbus.getAllData();
+        ArrayList<HoaDon> data = hdbus.getAllBillByIdCus(khachhang.getMaKhachHang());
         
         Container container = new Container();
-        int col = 4;
-        int row = data.size() % 3 == 0 ? data.size() / 3 : data.size() / 3 + 1;
+        int waitSubmit = 0;
+        int submited = 0;
+        int received = 0;
+        int sum = 0;
+        
         
         for(HoaDon hd : data){
+            sum++;
+            switch(hd.getTrangThai()){
+                case 0:{
+                    waitSubmit++;
+                    break;
+                }
+                case 1:{
+                    submited++;
+                    break;
+                }
+                case 2:{
+                    received++;
+                    break;
+                }
+            }
             JPanel p = new contentHistory(hd);
             p.setVisible(true);
             container.add(p);
         }
+        int col = 4;
+        int row = data.size() % col == 0 ? data.size() / col : data.size() / col + 1;
         
         container.setLayout(new GridLayout(row, col));
         scrollContent.getViewport().setView(container);
+        
+        sumOfBill.setText("Tổng số hóa đơn :" + sum);
+        waitSubmitBill.setText("Chờ xác nhận :" + waitSubmit);
+        submitedBill.setText("Đã Xác Nhận :" + submited);
+        receivedBill.setText("Đã Nhận :" + received);
     }
 }

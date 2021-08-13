@@ -3,19 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI.Login;
+package GUI.LoginCus;
 
 import BUS.TaiKhoanBus;
-import DTO.ChiTietHoaDon;
-import DTO.KhachHang;
-import DTO.TaiKhoan;
-import GUI.KhachHang.Home;
 import ProcessingFunction.SendEmail;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
@@ -23,34 +22,16 @@ import javax.swing.JOptionPane;
  *
  * @author MINHTHUAN
  */
-public class changePassword extends javax.swing.JFrame {
-    ArrayList<ChiTietHoaDon> dataCart = new ArrayList<>();
-    KhachHang kh = new KhachHang();
-    private int code = 0;
+public class ForgetPassword extends javax.swing.JFrame {
     TaiKhoanBus tkbus = new TaiKhoanBus();
+    private int code  = 0;
     /**
-     * Creates new form changePassword
+     * Creates new form ForgetPassword
      */
-    public changePassword() {
+    public ForgetPassword() {
         initComponents();
         initialization();
         performEvent();
-    }
-    
-    public changePassword(KhachHang kh,ArrayList<ChiTietHoaDon> ct) {
-        setDataCart(ct);
-        setKh(kh);
-        initComponents();
-        initialization();
-        performEvent();
-    }
-
-    public KhachHang getKh() {
-        return kh;
-    }
-
-    public void setKh(KhachHang kh) {
-        this.kh = kh;
     }
 
     public int getCode() {
@@ -62,17 +43,6 @@ public class changePassword extends javax.swing.JFrame {
     }
     
     
-
-    public ArrayList<ChiTietHoaDon> getDataCart() {
-        return dataCart;
-    }
-
-    public void setDataCart(ArrayList<ChiTietHoaDon> dataCart) {
-        this.dataCart = dataCart;
-    }
-    
-    
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -84,6 +54,8 @@ public class changePassword extends javax.swing.JFrame {
 
         background = new javax.swing.JPanel();
         title = new javax.swing.JLabel();
+        forgetPassword3 = new javax.swing.JLabel();
+        username = new javax.swing.JTextField();
         forgetPassword = new javax.swing.JLabel();
         password = new javax.swing.JPasswordField();
         forgetPassword5 = new javax.swing.JLabel();
@@ -92,15 +64,12 @@ public class changePassword extends javax.swing.JFrame {
         confirm = new javax.swing.JTextField();
         confirmBtn = new javax.swing.JButton();
         returnLogin = new javax.swing.JLabel();
+        userIcon = new javax.swing.JLabel();
         passwordIcon2 = new javax.swing.JLabel();
         passwordIcon3 = new javax.swing.JLabel();
         passwordIcon = new javax.swing.JLabel();
         getCodeBtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        passwordIcon4 = new javax.swing.JLabel();
-        oldPassword = new javax.swing.JPasswordField();
-        forgetPassword1 = new javax.swing.JLabel();
-        logoutBtn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -113,8 +82,18 @@ public class changePassword extends javax.swing.JFrame {
         title.setFont(new java.awt.Font("Vni 07 WaterBrushROB", 1, 36)); // NOI18N
         title.setForeground(new java.awt.Color(204, 255, 0));
         title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        title.setText("Thay đổi mật khẩu");
+        title.setText("Khôi phục mật khẩu");
         background.add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 50, 400, -1));
+
+        forgetPassword3.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        forgetPassword3.setForeground(new java.awt.Color(255, 255, 255));
+        forgetPassword3.setText("Tên tài khoản :");
+        background.add(forgetPassword3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
+
+        username.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        username.setForeground(new java.awt.Color(255, 255, 255));
+        username.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        background.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 250, 40));
 
         forgetPassword.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         forgetPassword.setForeground(new java.awt.Color(255, 255, 255));
@@ -149,13 +128,16 @@ public class changePassword extends javax.swing.JFrame {
         confirmBtn.setBackground(new java.awt.Color(255, 255, 255));
         confirmBtn.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         confirmBtn.setForeground(new java.awt.Color(153, 51, 255));
-        confirmBtn.setText("Xác nhận");
+        confirmBtn.setText("Khôi phục");
         background.add(confirmBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 440, 170, 50));
 
         returnLogin.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         returnLogin.setForeground(new java.awt.Color(0, 0, 204));
         returnLogin.setText("Trở về đăng nhập");
         background.add(returnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 500, -1, -1));
+
+        userIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/user_48px.png"))); // NOI18N
+        background.add(userIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 40, 50));
 
         passwordIcon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/key_2_100px.png"))); // NOI18N
         background.add(passwordIcon2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 40, 50));
@@ -176,23 +158,6 @@ public class changePassword extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Lấy Mã");
         background.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 410, -1, -1));
-
-        passwordIcon4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/key_2_100px.png"))); // NOI18N
-        background.add(passwordIcon4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 40, 50));
-
-        oldPassword.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        oldPassword.setForeground(new java.awt.Color(255, 255, 255));
-        oldPassword.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        background.add(oldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 250, 40));
-
-        forgetPassword1.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-        forgetPassword1.setForeground(new java.awt.Color(255, 255, 255));
-        forgetPassword1.setText("Mật khẩu cũ:");
-        background.add(forgetPassword1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
-
-        logoutBtn.setBackground(new java.awt.Color(255, 255, 255));
-        logoutBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/delete_26px.png"))); // NOI18N
-        background.add(logoutBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 50, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/1092593.png"))); // NOI18N
         background.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 530));
@@ -230,20 +195,20 @@ public class changePassword extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(changePassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ForgetPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(changePassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ForgetPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(changePassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ForgetPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(changePassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ForgetPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new changePassword().setVisible(true);
+                new ForgetPassword().setVisible(true);
             }
         });
     }
@@ -254,111 +219,109 @@ public class changePassword extends javax.swing.JFrame {
     private javax.swing.JButton confirmBtn;
     private javax.swing.JPasswordField confirmPassword;
     private javax.swing.JLabel forgetPassword;
-    private javax.swing.JLabel forgetPassword1;
     private javax.swing.JLabel forgetPassword2;
+    private javax.swing.JLabel forgetPassword3;
     private javax.swing.JLabel forgetPassword5;
     private javax.swing.JButton getCodeBtn;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JButton logoutBtn;
-    private javax.swing.JPasswordField oldPassword;
     private javax.swing.JPasswordField password;
     private javax.swing.JLabel passwordIcon;
     private javax.swing.JLabel passwordIcon2;
     private javax.swing.JLabel passwordIcon3;
-    private javax.swing.JLabel passwordIcon4;
     private javax.swing.JLabel returnLogin;
     private javax.swing.JLabel title;
+    private javax.swing.JLabel userIcon;
+    private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
 
     private void initialization() {
-        this.setLocationRelativeTo(null);
+        username.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.WHITE));
+        password.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.WHITE));
+        confirmPassword.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.WHITE));
+        confirm.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.WHITE));
         
-        oldPassword.setBackground(new Color(0,0,0,0));
+        username.setBackground(new Color(0,0,0,0));
         password.setBackground(new Color(0,0,0,0));
         confirmPassword.setBackground(new Color(0,0,0,0));
         confirm.setBackground(new Color(0,0,0,0));
         
-        oldPassword.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.WHITE));
-        password.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.WHITE));
-        confirmPassword.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.WHITE));
-        confirm.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.WHITE));
+        this.setLocationRelativeTo(null);
     }
 
     private void performEvent() {
-        ActionListener ac = new ActionListener() {
+        returnLogin.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                new Login().setVisible(true);
+                dispose();
+            }
+        });
+        getCodeBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                switch(e.getActionCommand()){
-                    case "thoat":{
-                        new Home(kh, dataCart).setVisible(true);
-                        dispose();
-                        break;
-                    }
-                    case "code":{
-                        TaiKhoan tk = tkbus.getTKById(kh.getMaKhachHang());
-                        Random rd = new Random();
-                        setCode(10000 + rd.nextInt(99999-10000+1));
-                        String html = "<div style=\"width: 80%;margin-left: 10%;background-color: rgb(226, 224, 224);border-radius: 2rem;height: 20rem;\">\n" +
-"		<div style=\"background-color: cadetblue;height: 4rem;border-top-left-radius: 2rem;border-top-right-radius: 2rem;\">\n" +
-"			<h1 style=\"width: 100%;text-align: center;color: rgb(255, 255, 255);padding-top: 1rem;\">LAY MA XAC NHAN</h1>\n" +
-"		</div>\n" +
-"		<h1 style=\"width: 100%;text-align: center;color:blue;\">MA XAC NHAN : "+getCode()+"</h1>\n" +
-"               </div>";
-                        try {
-                            SendEmail.sendMail(tk.getTenDangNhap(), "Thay đổi mật khẩu", html);
-                        } catch (Exception ex) {
-                            JOptionPane.showMessageDialog(null, "Không thể lấy mã code.Vui lòng thử lại");
-                        }
-                        
-                        break;
-                    }
-                    case "Xác nhận":{
-                        if(String.valueOf(oldPassword.getPassword()).compareTo("") == 0){
-                            JOptionPane.showMessageDialog(null, "Bạn chưa nhập mật khẩu cũ");
-                            return;
-                        }
-                        if(String.valueOf(password.getPassword()).compareTo("") == 0){
-                            JOptionPane.showMessageDialog(null, "Bạn chưa nhập mật khẩu mật khẩu mới");
-                            return;
-                        }
-                        if(String.valueOf(confirmPassword.getPassword()).compareTo(String.valueOf(password.getPassword())) != 0){
-                            JOptionPane.showMessageDialog(null, "Xác nhận mật khẩu không chính xác");
-                            return;
-                        }
-                        try {
-                            if(Integer.valueOf(confirm.getText()) != getCode()){
-                                throw new Exception();
-                            }
-                        } catch (Exception ex) {
-                            JOptionPane.showMessageDialog(null, "Mã xác nhận không chính xác");
-                            return;
-                        }
-                        TaiKhoan tk = tkbus.getTKById(kh.getMaKhachHang());
-                        if(tk.getMatKhau().compareTo(String.valueOf(oldPassword.getPassword())) != 0){
-                            JOptionPane.showMessageDialog(null, "Mật khẩu cũ không chính xác");
-                            return;
-                        }
-                        if(tkbus.updatePassword(tk.getTenDangNhap(), String.valueOf(password.getPassword()))){
-                            JOptionPane.showMessageDialog(null, "Thay đổi thành công vui lòng đăng nhập");
-                            new Login(dataCart).setVisible(true);
-                            dispose();
-                            return;
-                        }
-                        JOptionPane.showMessageDialog(null, "Không thể thay đổi");
-                        break;
-                    }
+                Random rd = new Random();
+                setCode(rd.nextInt(999999-100000+1) + 100000);
+                String html = "<div style=\"width: 80%;margin-left: 10%;background-color: rgb(226, 224, 224);border-radius: 2rem;height: 20rem;\">\n" +
+                "<div style=\"background-color: cadetblue;height: 4rem;border-top-left-radius: 2rem;border-top-right-radius: 2rem;\">\n" +
+                "<h1 style=\"width: 100%;text-align: center;color: rgb(255, 255, 255);padding-top: 1rem;\">LAY MA XAC NHAN</h1>\n" +
+                "</div>\n" +
+                "<h1 style=\"width: 100%;text-align: center;color:blue;\">MA XAC NHAN : "+getCode()+"</h1>\n" +
+                "</div>";
+                try {
+                    SendEmail send = new SendEmail(username.getText(), "", html);
+                    send.run();
+                } catch (Exception ex) {
+                    Logger.getLogger(Register_1.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-        };
-        
-        logoutBtn.addActionListener(ac);
-        logoutBtn.setActionCommand("thoat");
-        
-        getCodeBtn.addActionListener(ac);
-        getCodeBtn.setActionCommand("code");
-        
-        confirmBtn.addActionListener(ac);
-        confirmBtn.setActionCommand(confirmBtn.getActionCommand());
+        });
+        confirmBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(checkInput() == false){
+                    return;
+                }
+                if(tkbus.updatePassword(username.getText(), String.valueOf(password.getPassword()))){
+                    JOptionPane.showMessageDialog(null, "Khôi phục thành công.Vui lòng đăng nhập lại");
+                    new Login().setVisible(true);
+                    dispose();
+                }
+            }
+
+            private boolean checkInput() {
+                if(username.getText().compareTo("") == 0){
+                    JOptionPane.showMessageDialog(null, "Tên tài khoản không được để trống");
+                    return false;
+                }
+                if(username.getText().contains("@gmail.com") == false){
+                    JOptionPane.showMessageDialog(null, "Tài khoản phải là Email");
+                }
+                if(tkbus.isExistUser(username.getText()) == false){
+                    JOptionPane.showMessageDialog(null, "Tài khoản không tồn tại");
+                    return false;
+                }
+                if(String.valueOf(password.getPassword()).compareTo("") == 0){
+                    JOptionPane.showMessageDialog(null, "Chưa nhập mật khẩu");
+                    return false;
+                }
+                if(String.valueOf(confirmPassword.getPassword()).compareTo("") == 0){
+                    JOptionPane.showMessageDialog(null, "Chưa nhập mật khẩu");
+                    return false;
+                }
+                if(String.valueOf(password.getPassword()).compareTo(String.valueOf(confirmPassword.getPassword())) != 0){
+                    JOptionPane.showMessageDialog(null, "Mật khẩu mới và xác nhận mật khẩu không khớp");
+                    return false;
+                }
+                try {
+                    if(Integer.valueOf(confirm.getText()) != getCode()){
+                        throw  new Exception();
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Mã xác nhận không chính xác");
+                    return false;
+                }
+                return true;
+            }
+        });
     }
 }

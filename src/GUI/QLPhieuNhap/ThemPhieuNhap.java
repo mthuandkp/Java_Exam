@@ -148,6 +148,11 @@ public class ThemPhieuNhap extends javax.swing.JFrame {
         Background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         bookIdJCombo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        bookIdJCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bookIdJComboActionPerformed(evt);
+            }
+        });
         Background.add(bookIdJCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 250, -1));
 
         bookId.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -273,6 +278,10 @@ public class ThemPhieuNhap extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void bookIdJComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookIdJComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bookIdJComboActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -352,7 +361,7 @@ public class ThemPhieuNhap extends javax.swing.JFrame {
         idReceipt.setText(String.valueOf(phieunhapbus.createAutoId()));
 
         this.setLocationRelativeTo(null);
-        image.setIcon(new ImageIcon(ProcessingFunction.CopyImage.resizeImage(".\\src\\Book_Image\\empty.png", image)));
+        image.setIcon(new ImageIcon(ProcessingFunction.CopyImage.resizeImage("./src/Book_Image/empty.png", image)));
         nameImage.setText("empty.png");
         loadType();
         setDefaultCloseOperation(HIDE_ON_CLOSE);
@@ -448,13 +457,13 @@ public class ThemPhieuNhap extends javax.swing.JFrame {
                     }
 
                     case "Làm Lại": {
-                        
+
                         bookName.setText("");
                         bookPrice.setText("");
                         bookNumber.setText("");
                         bookNXB.setText("");
                         bookType.setSelectedIndex(0);
-                        image.setIcon(new ImageIcon(ProcessingFunction.CopyImage.resizeImage(".\\src\\Book_Image\\empty.png", image)));
+                        image.setIcon(new ImageIcon(ProcessingFunction.CopyImage.resizeImage("./src/Book_Image/empty.png", image)));
                         nameImage.setText("empty.png");
                         isEdit.setSelected(false);
                         bookId.setEnabled(true);
@@ -495,7 +504,7 @@ public class ThemPhieuNhap extends javax.swing.JFrame {
                                 bookNXB.setText("");
                                 bookAuthor.setText("");
                                 bookType.setSelectedIndex(0);
-                                image.setIcon(new ImageIcon(ProcessingFunction.CopyImage.resizeImage(".\\src\\Book_Image\\empty.png", image)));
+                                image.setIcon(new ImageIcon(ProcessingFunction.CopyImage.resizeImage("./src/Book_Image/empty.png", image)));
                                 nameImage.setText("empty.png");
                                 isEdit.setSelected(false);
                                 isExist.setSelected(false);
@@ -523,14 +532,26 @@ public class ThemPhieuNhap extends javax.swing.JFrame {
                                 }
                             }
                         }
-                        
+
                         //Kiem tra ma sach da ton tai  trong DB
                         if (isExist.isSelected() == false) {
-                            System.out.println("Chạy toi day ne");
                             int idDB = sachBus.getIdBookContains(bookName.getText());
-                            if (id != 0 && sachBus.getNameById(idDB).compareTo("")!=0) {
-                                int select = JOptionPane.showConfirmDialog(null, "Tên sách [" + bookName.getText() + "] gần giống với [" + sachBus.getNameById(idDB) + "] trong Database bạn có muốn thêm mới hay không ?");
+                            if (id != 0 && sachBus.getNameById(idDB).compareTo("") != 0) {
+                                int select = JOptionPane.showConfirmDialog(null, "Tên sách [" + bookName.getText() + "] gần giống với [" + sachBus.getNameById(idDB) + "] trong Database bạn có muốn thêm mới hay không ?", "Hello", 0);
                                 if (select != 0) {
+                                    //Tự dộng thêm vào ArrayList
+                                    sach = new Sach(
+                                            id,
+                                            bookName.getText(),
+                                            Integer.valueOf(bookPrice.getText()),
+                                            Integer.valueOf(bookNumber.getText()),
+                                            bookNXB.getText(),
+                                            getIdFromType(String.valueOf(bookType.getSelectedItem())),
+                                            true,
+                                            nameImage.getText(),
+                                            bookAuthor.getText()
+                                    );
+
                                     return;
                                 }
                             }
@@ -548,15 +569,7 @@ public class ThemPhieuNhap extends javax.swing.JFrame {
 
                         data.add(sach);
                         loadTableData();
-                        bookId.setText("");
-                        bookName.setText("");
-                        bookPrice.setText("");
-                        bookNumber.setText("");
-                        bookNXB.setText("");
-                        bookAuthor.setText("");
-                        bookType.setSelectedIndex(0);
-                        image.setIcon(new ImageIcon(ProcessingFunction.CopyImage.resizeImage(".\\src\\Book_Image\\empty.png", image)));
-                        nameImage.setText("empty.png");
+                        resetAll();
                         JOptionPane.showMessageDialog(null, "Thêm thành công");
                         enableInput();
                         isExist.setSelected(false);
@@ -596,7 +609,7 @@ public class ThemPhieuNhap extends javax.swing.JFrame {
                             disableInput();
                         }
                         //Gán hình ảnh
-                        String url = ".\\src\\Book_Image\\" + String.valueOf(table.getValueAt(table.getSelectedRow(), 6));
+                        String url = "./src/Book_Image/" + String.valueOf(table.getValueAt(table.getSelectedRow(), 6));
                         image.setIcon(new ImageIcon(CopyImage.resizeImage(url, image)));
                         nameImage.setText(CopyImage.getNameImage(url));
                         break;
@@ -656,6 +669,18 @@ public class ThemPhieuNhap extends javax.swing.JFrame {
                         break;
                     }
                 }
+            }
+
+            private void resetAll() {
+                bookId.setText("");
+                bookName.setText("");
+                bookPrice.setText("");
+                bookNumber.setText("");
+                bookNXB.setText("");
+                bookAuthor.setText("");
+                bookType.setSelectedIndex(0);
+                image.setIcon(new ImageIcon(ProcessingFunction.CopyImage.resizeImage("./src/Book_Image/empty.png", image)));
+                nameImage.setText("empty.png");
             }
         };
         updateImage.addActionListener(ac);
@@ -718,10 +743,10 @@ public class ThemPhieuNhap extends javax.swing.JFrame {
                 bookNXB.setText(s.getNhaXuatBan());
                 bookType.setSelectedItem(String.valueOf(s.getMaTheLoai()) + "-" + theloaibus.getNameTypeById(s.getMaTheLoai()));
                 bookPrice.setText(String.valueOf(s.getGia()));
-                 //Gán hình ảnh
-                 String url = ".\\src\\Book_Image\\" + s.getHinhAnh();
-                 image.setIcon(new ImageIcon(CopyImage.resizeImage(url, image)));
-                 nameImage.setText(CopyImage.getNameImage(url));
+                //Gán hình ảnh
+                String url = "./src/Book_Image/" + s.getHinhAnh();
+                image.setIcon(new ImageIcon(CopyImage.resizeImage(url, image)));
+                nameImage.setText(s.getHinhAnh());
             }
         });
     }

@@ -32,23 +32,97 @@ public class Home extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(1120, 660));
         setPreferredSize(new java.awt.Dimension(1120, 640));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 72)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(204, 0, 204));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Admin đẹp zaiii !!!");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 1120, 190));
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(153, 51, 255));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Admin/book.png"))); // NOI18N
+        jButton2.setText("Quản Lý Sách");
+        jButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 290, 100));
+
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(153, 51, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Admin/paid_bill_64px.png"))); // NOI18N
+        jButton1.setText("Quản Lý Hóa Đơn");
+        jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 50, 290, 100));
+
+        jButton3.setBackground(new java.awt.Color(255, 255, 255));
+        jButton3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(153, 51, 255));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Admin/receipt_dollar_64px.png"))); // NOI18N
+        jButton3.setText("Quản Lý Phiếu Nhập");
+        jButton3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 150, 290, 100));
+
+        jButton5.setBackground(new java.awt.Color(255, 255, 255));
+        jButton5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(153, 51, 255));
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Admin/account.png"))); // NOI18N
+        jButton5.setText("Quản Lý Tài Khoản");
+        jButton5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, 290, 100));
+
+        jButton7.setBackground(new java.awt.Color(255, 255, 255));
+        jButton7.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(153, 51, 255));
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Admin/staff.png"))); // NOI18N
+        jButton7.setText("Quản Lý Nhân Viên");
+        jButton7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 320, 290, 100));
+
+        jButton9.setBackground(new java.awt.Color(255, 255, 255));
+        jButton9.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jButton9.setForeground(new java.awt.Color(153, 51, 255));
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Admin/supplier_64px.png"))); // NOI18N
+        jButton9.setText("Quản Lý Nhà Cung Cấp");
+        jButton9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 420, 290, 100));
+
+        jButton6.setBackground(new java.awt.Color(255, 255, 255));
+        jButton6.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(153, 51, 255));
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Admin/customer.png"))); // NOI18N
+        jButton6.setText("Quản Lý Khách Hàng");
+        jButton6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 420, 290, 100));
+
+        jButton8.setBackground(new java.awt.Color(255, 255, 255));
+        jButton8.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jButton8.setForeground(new java.awt.Color(153, 51, 255));
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Admin/sale_64px.png"))); // NOI18N
+        jButton8.setText("Quản Lý Khuyến Mãi");
+        jButton8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 290, 100));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     // End of variables declaration//GEN-END:variables
 
     private void initialization() {

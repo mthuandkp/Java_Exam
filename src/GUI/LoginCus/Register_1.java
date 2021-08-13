@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI.Login;
+package GUI.LoginCus;
 
 import BUS.KhachHangBus;
 import BUS.TaiKhoanBus;
@@ -318,8 +318,7 @@ public class Register_1 extends javax.swing.JFrame {
                     send.run();
                 } catch (Exception ex) {
                     Logger.getLogger(Register_1.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
+                }                
             }
         });
     }

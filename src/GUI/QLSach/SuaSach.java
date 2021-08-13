@@ -314,7 +314,12 @@ public class SuaSach extends javax.swing.JFrame {
 
     private void initialization() {
         this.setLocationRelativeTo(null);
-        image.setIcon(new ImageIcon(ProcessingFunction.CopyImage.resizeImage(".\\src\\Book_Image\\empty.png", image)));
+        try {
+            image.setIcon(new ImageIcon(ProcessingFunction.CopyImage.resizeImage("./src/Book_Image/empty.png", image)));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
         nameImage.setText("empty.png");
         loadType();
         loadBook();
@@ -385,7 +390,7 @@ public class SuaSach extends javax.swing.JFrame {
                         bookNXB.setText("");
                         bookType.setSelectedIndex(0);
                         bookSale.setText("");
-                        image.setIcon(new ImageIcon(ProcessingFunction.CopyImage.resizeImage(".\\src\\Book_Image\\empty.png", image)));
+                        image.setIcon(new ImageIcon(ProcessingFunction.CopyImage.resizeImage("./src/Book_Image/empty.png", image)));
                         nameImage.setText("empty.png");
                         break;
                     }
@@ -460,7 +465,7 @@ public class SuaSach extends javax.swing.JFrame {
                 bookNXB.setText(s.getNhaXuatBan());
                 bookType.setSelectedItem(String.valueOf(s.getMaTheLoai()) + "-" + sachBus.getNameTypeById(s.getMaTheLoai()));
                 bookSale.setText(String.valueOf(s.getPhanTramGiamGia()));
-                image.setIcon(new ImageIcon(ProcessingFunction.CopyImage.resizeImage(".\\src\\Book_Image\\" + s.getHinhAnh(), image)));
+                image.setIcon(new ImageIcon(ProcessingFunction.CopyImage.resizeImage("./src/Book_Image/" + s.getHinhAnh(), image)));
                 nameImage.setText(s.getHinhAnh());
                 bookStatus.setText(String.valueOf(s.isTrangThai()));
                 bookAuthor.setText(s.getTacGia());
@@ -485,6 +490,9 @@ public class SuaSach extends javax.swing.JFrame {
         image.setIcon(imgIcon);
         nameImage.setText(ProcessingFunction.CopyImage.getNameImage(url));
         ProcessingFunction.CopyImage.copyImage(url);
+        
+        
+        System.out.println("URL = " + url);
     }
 
     public int getIdFromType(String s) {

@@ -32,7 +32,7 @@ public class contentDetail extends javax.swing.JPanel {
         bookNumber.setText("Số Lượng :"+String.valueOf(ctpn.getSoLuong()));
         bookPrice.setText("Giá :"+String.valueOf(sachbus.getPriceBookFromId(ctpn.getMaSach())));
         image.setSize(80, 100);
-        image.setIcon(new ImageIcon(ProcessingFunction.CopyImage.resizeImage(".\\src\\Book_Image\\" + sachbus.getImageById(ctpn.getMaSach()), image)));
+        image.setIcon(new ImageIcon(ProcessingFunction.CopyImage.resizeImage("./src/Book_Image/" + sachbus.getImageById(ctpn.getMaSach()), image)));
     }
 
     /**

@@ -220,7 +220,7 @@ public class ContentDetailBook extends javax.swing.JPanel {
         
         bookDecrease.setText("-" + s.getPhanTramGiamGia() + "%");
         bookImage.setSize(138, 169);
-        bookImage.setIcon(new ImageIcon(CopyImage.resizeImage(".\\src\\Book_Image\\" + s.getHinhAnh(), bookImage)));
+        bookImage.setIcon(new ImageIcon(CopyImage.resizeImage("./src/Book_Image/" + s.getHinhAnh(), bookImage)));
         
         bookName.setEditable(false);
         bookNXB.setEditable(false);

@@ -82,7 +82,7 @@ public class TimKiem extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 153, 255));
-        jLabel1.setText("Tìm kiếm phiếu nhập");
+        jLabel1.setText("Tìm kiếm hóa đơn ");
 
         idStaffSelect.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
 

@@ -9,9 +9,9 @@ import BUS.ChiTietHoaDonBus;
 import BUS.KhachHangBus;
 import DTO.ChiTietHoaDon;
 import DTO.KhachHang;
-import GUI.Login.Login;
-import GUI.Login.Register_1;
-import GUI.Login.changePassword;
+import GUI.LoginCus.Login;
+import GUI.LoginCus.Register_1;
+import GUI.LoginCus.changePassword;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -306,7 +306,7 @@ public class Home extends javax.swing.JFrame {
                 //Chuyển tất cả dữ liệu từ Sản phẩm -> Giỏ hàng
                 ArrayList<ChiTietHoaDon> data = cthdbus.appendDetailBill(product.getCartData(), cart.getDataCart());
                 cart = new CartShopping(data,getKh());
-                product.setCartData(new ArrayList<>());
+                product.setCartData(new ArrayList<>(),cart.getDataCart());
                 setting.setVisible(false);
                 switch (e.getActionCommand()) {
                     case "Trang Chủ": {
@@ -359,8 +359,7 @@ public class Home extends javax.swing.JFrame {
             public void windowClosing(WindowEvent e) {
                 ArrayList<ChiTietHoaDon> data = cthdbus.appendDetailBill(product.getCartData(), cart.getDataCart());
                 cart = new CartShopping(data,kh);
-                product.setCartData(new ArrayList<>());
-                cart.recoveryNumberBook();
+                product.setCartData(new ArrayList<>(),new ArrayList<>());
                 System.exit(0);
             }
         });

@@ -43,7 +43,7 @@ public class TrangChu extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 60)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 153, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Vui lòng chọn chức năng cần dùng");
+        jLabel1.setText("Cửa Hàng Sách Online");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 960, -1));
 
         jButton1.setBackground(new java.awt.Color(0, 153, 255));

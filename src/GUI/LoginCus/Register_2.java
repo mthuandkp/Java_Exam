@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI.Login;
+package GUI.LoginCus;
 
 
 import BUS.KhachHangBus;
@@ -12,6 +12,7 @@ import DTO.ChiTietHoaDon;
 import DTO.KhachHang;
 import DTO.TaiKhoan;
 import GUI.KhachHang.Home;
+import ProcessingFunction.check;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -302,15 +303,15 @@ public class Register_2 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Vui lòng nhập ngày sinh");
             return false;
         }
-        /*if(ProcessingFunction.check.checkValidDate(dateOfBirth.getText()) == false){
-            JOptionPane.showMessageDialog(null, "Bạn dùng lịch sao hảo à ???");
-            return false;
-        }*/
         //Ngay sinh khong hop le
         try {
             LocalDate.parse(dateOfBirth.getText(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ngày sinh phải có dạng yyyy-mm-dd");
+            return false;
+        }
+        if(check.checkValidDate(dateOfBirth.getText()) == false){
+            JOptionPane.showMessageDialog(null, "Ngày sinh không hợp lệ");
             return false;
         }
         //Chua nhap SDT

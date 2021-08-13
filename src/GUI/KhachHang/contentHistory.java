@@ -65,49 +65,56 @@ public class contentHistory extends javax.swing.JPanel {
         dateBill = new javax.swing.JTextField();
         viewDetail = new javax.swing.JButton();
         staff = new javax.swing.JTextField();
+        statusBill = new javax.swing.JLabel();
 
         background.setBackground(new java.awt.Color(255, 255, 255));
         background.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 204, 255), 2));
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/User/bill_60px.png"))); // NOI18N
-        background.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 51, -1, -1));
+        background.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, -1, -1));
 
         idBill.setEditable(false);
         idBill.setBackground(new java.awt.Color(255, 255, 255));
         idBill.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        background.add(idBill, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 158, 240, -1));
+        background.add(idBill, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 230, -1));
 
         timeBill.setEditable(false);
         timeBill.setBackground(new java.awt.Color(255, 255, 255));
         timeBill.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        background.add(timeBill, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 252, 240, -1));
+        background.add(timeBill, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 230, -1));
 
         dateBill.setEditable(false);
         dateBill.setBackground(new java.awt.Color(255, 255, 255));
         dateBill.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        background.add(dateBill, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 205, 240, -1));
+        background.add(dateBill, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 230, -1));
 
         viewDetail.setBackground(new java.awt.Color(255, 255, 255));
         viewDetail.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         viewDetail.setForeground(new java.awt.Color(0, 51, 255));
         viewDetail.setText("Xem Chi Tiết");
-        background.add(viewDetail, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, -1, -1));
+        background.add(viewDetail, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, -1, -1));
 
         staff.setEditable(false);
         staff.setBackground(new java.awt.Color(255, 255, 255));
         staff.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        background.add(staff, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 293, 240, -1));
+        background.add(staff, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 230, -1));
+
+        statusBill.setFont(new java.awt.Font("Roboto", 1, 16)); // NOI18N
+        statusBill.setForeground(new java.awt.Color(255, 0, 0));
+        statusBill.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        statusBill.setText("Đã Xác Nhận");
+        background.add(statusBill, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 130, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -118,6 +125,7 @@ public class contentHistory extends javax.swing.JPanel {
     private javax.swing.JTextField idBill;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField staff;
+    private javax.swing.JLabel statusBill;
     private javax.swing.JTextField timeBill;
     private javax.swing.JButton viewDetail;
     // End of variables declaration//GEN-END:variables
@@ -135,6 +143,20 @@ public class contentHistory extends javax.swing.JPanel {
         idBill.setText("Mã Hóa Đơn : " + hoadon.getMaHoaDon());
         dateBill.setText("Ngày Lập : " + hoadon.getNgayLap().toString());
         timeBill.setText("Giờ Lập : " + hoadon.getGioLap().toString());
+        switch(hoadon.getTrangThai()){
+            case 0:{
+                statusBill.setText("Chờ Xác Nhận");
+                break;
+            }
+            case 1:{
+                statusBill.setText("Đã Xác Nhận");
+                break;
+            }
+            case 2:{
+                statusBill.setText("Đã Nhận Hàng");
+                break;
+            }
+        }
         if(hoadon == null || hoadon.getTrangThai() == 0){
             staff.setText("Nhân Viên Xác Nhận : Chưa được xác nhận");
             return;

@@ -49,7 +49,7 @@ public class CopyImage {
         OutputStream os = null;
         try {
             is = new FileInputStream(new File(url));
-            os = new FileOutputStream(new File(".\\src\\Book_Image\\" + getNameImage(url)));
+            os = new FileOutputStream(new File("./src/Book_Image/" + getNameImage(url)));
             byte[] buffer = new byte[1024];
             int length;
             while ((length = is.read(buffer)) > 0) {
@@ -66,7 +66,7 @@ public class CopyImage {
     //Get name image from url
     public static String getNameImage(String url){
         int i = url.length()-1;
-        while(i>=0 && url.charAt(i) != '\\'){
+        while(i>=0 && (url.charAt(i) != '/' && url.charAt(i)!= '\\' )){
             i--;
         }
         return i < 0 ? "":url.substring(i+1,url.length()).replaceAll("\\s+","");

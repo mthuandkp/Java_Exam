@@ -6,21 +6,11 @@
 package BUS;
 
 import DAO.SachDao;
-import DAO.TheLoaiDAO;
 import DTO.ChiTietHoaDon;
-import DTO.ChiTietPhieuNhap;
-import DTO.NhanVien;
 import DTO.Sach;
 import DTO.TheLoai;
 import ProcessingFunction.Other;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  *
@@ -65,6 +55,17 @@ public class SachBus {
     
     public ArrayList<Sach> getAllData(){
         return sachdao.getAllBookData();
+    }
+    
+    public ArrayList<Sach> getAllDataById(int id){
+        ArrayList<Sach> data = getAllData();
+        ArrayList<Sach> result = new ArrayList<>();
+        for(Sach s : data){
+            if(s.getMaSach() == id){
+                result.add(s);
+            }
+        }
+        return result;
     }
     
     
@@ -289,6 +290,8 @@ public class SachBus {
                 number += ct.getSoLuong();
             }
         }
+        System.out.println("sum = " + sum);
+        System.out.println("number = " + number);
         return (sum >= number) ? true:false;
     }
     
@@ -314,39 +317,48 @@ public class SachBus {
             }
         }
         return 0;
-    }   
+    }
     
     
     public boolean decreaseNumberBook(ArrayList<ChiTietHoaDon> datacthd){
         ArrayList<Sach> data = getAllData();
+        
         for(ChiTietHoaDon ct : datacthd){
-            while(ct.getSoLuong() > 0){
-                for(Sach s : data){
-                    if(ct.getMaSach() == s.getMaSach()){
-                        //SL DB - SL CT
-                        //=> 0 : SLDB = delta;SLCT = 0
-                        //< 0 : SLDB = 0;SLCT =  abs(delta)
-                        int result = s.getSoLuong() - ct.getSoLuong();
-                        if(result >=0){
-                            s.setSoLuong(result);
-                            ct.setSoLuong(0);
-                        }
-                        else{
-                            s.setSoLuong(0);
-                            ct.setSoLuong(Math.abs(result));
-                        }
-                    }
+            decreaseNumberBook(data,ct.getMaSach(), ct.getSoLuong());
+            
+        }
+        
+        for(Sach s : data){
+            if(sachdao.updateBook(s) == false){
+                return false;
+            }
+            //System.out.println(s);
+        }
+        
+        return true;
+    }
+    
+    public boolean decreaseNumberBook(ArrayList<Sach> data,int maSach,int num){
+        for(Sach ct : data){
+            if(num == 0){
+                return true;
+            }
+            if(maSach == ct.getMaSach() && ct.getSoLuong() != 0 && num != 0){
+                if(ct.getSoLuong() < num){
+                    num -= ct.getSoLuong();
+                    ct.setSoLuong(0);
+                }
+                else{
+                    ct.setSoLuong(-num+ct.getSoLuong());
+                    num = 0;
                 }
             }
         }
-        boolean OK = false;
-        for(Sach s : data){
-            OK = sachdao.updateBook(s);
-        }
-        
-        return OK;
+        return true;
     }
     
+    
+        
     public String getImageById(int id){
         ArrayList<Sach> data = getAllData();
         for(Sach s : data){
@@ -413,12 +425,6 @@ public class SachBus {
         return sachdao.updateNumberBook(id, num+numberAdd, idReceipt);
     }
     
-    public static void main(String[] args) {
-        SachBus sa = new SachBus();
-        ChiTietHoaDon ct =  sa.addBookToCart(1);
-        System.out.println(ct);
-    }
-
     public ArrayList<Sach> searchUser(String name, String nameType,String author, int higher, int lower,String NXB) {
         ArrayList<Sach> result = new ArrayList<>();
         ArrayList<Sach> data = getAllSachNotDuplicate();
