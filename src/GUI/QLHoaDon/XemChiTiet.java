@@ -7,29 +7,24 @@ package GUI.QLHoaDon;
 
 import BUS.ChiTietHoaDonBus;
 import BUS.HoaDonBus;
-import GUI.QLPhieuNhap.*;
 import BUS.KhachHangBus;
 import BUS.KhuyenMaiBus;
 import BUS.NhanVienBus;
 import BUS.SachBus;
-import BUS.TaiKhoanBus;
 import DTO.ChiTietHoaDon;
 import DTO.Date;
 import DTO.HoaDon;
+import DTO.KhachHang;
 import DTO.NhanVien;
 import ProcessingFunction.SendEmail;
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Arrays;
 import javax.swing.BoxLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -43,8 +38,6 @@ public class XemChiTiet extends javax.swing.JFrame {
     KhachHangBus khbus = new KhachHangBus();
     KhuyenMaiBus kmbus = new KhuyenMaiBus();
     SachBus sachbus = new SachBus();
-    TaiKhoanBus tkbus = new TaiKhoanBus();
-
     NhanVien nhanvien = null;
 
     /**
@@ -285,7 +278,8 @@ public class XemChiTiet extends javax.swing.JFrame {
                             + "<h1 style=\"width: 100%;text-align: center;color:blue;\">Don hang " + bill.getMaHoaDon() + " cua quy khac da duoc xac nhan</h1>\n"
                             + "</div>";
                     try {
-                        SendEmail send = new SendEmail(tkbus.getNameById(bill.getMaKhachHang()), "Thong bao xac nhan", html);
+                        KhachHang kh = khbus.getKHById(bill.getMaKhachHang());
+                        SendEmail send = new SendEmail(kh.getTenKhachHang(), "Thong bao xac nhan", html);
                         send.run();
 
                     } catch (Exception ex) {

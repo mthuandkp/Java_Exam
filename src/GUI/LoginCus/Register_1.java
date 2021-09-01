@@ -6,9 +6,8 @@
 package GUI.LoginCus;
 
 import BUS.KhachHangBus;
-import BUS.TaiKhoanBus;
 import DTO.ChiTietHoaDon;
-import DTO.TaiKhoan;
+import DTO.KhachHang;
 import GUI.KhachHang.Home;
 import ProcessingFunction.SendEmail;
 import java.awt.Color;
@@ -30,7 +29,6 @@ import javax.swing.JOptionPane;
 public class Register_1 extends javax.swing.JFrame {
 
     private int ConfirmCode = 0;
-    TaiKhoanBus tkbus = new TaiKhoanBus();
     KhachHangBus khbus = new KhachHangBus();
     ArrayList<ChiTietHoaDon> data = new ArrayList<>();
 
@@ -93,7 +91,7 @@ public class Register_1 extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        title.setFont(new java.awt.Font("Vni 07 WaterBrushROB", 1, 24)); // NOI18N
+        title.setFont(new java.awt.Font("UVN Ky Thuat", 1, 24)); // NOI18N
         title.setForeground(new java.awt.Color(255, 255, 255));
         title.setText("Đăng Ký 1/2");
         getContentPane().add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, -1, -1));
@@ -156,7 +154,6 @@ public class Register_1 extends javax.swing.JFrame {
         returnLogin.setText("Trở về đăng nhập");
         getContentPane().add(returnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(-3, 490, 400, -1));
 
-        exitBtn.setBackground(new java.awt.Color(255, 255, 255));
         exitBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         exitBtn.setForeground(new java.awt.Color(51, 51, 255));
         exitBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/export_64px.png"))); // NOI18N
@@ -283,8 +280,9 @@ public class Register_1 extends javax.swing.JFrame {
                 if (checkInput() == false) {
                     return;
                 }
-                TaiKhoan tk = new TaiKhoan(username.getText(), String.valueOf(password.getPassword()), khbus.createAutoId(), true);
-                new Register_2(tk,data).setVisible(true);
+          
+                KhachHang kh = new KhachHang(khbus.createAutoId(),username.getText(),String.valueOf(password.getPassword()),true);
+                new Register_2(kh,data).setVisible(true);
             }
         });
 
@@ -297,10 +295,10 @@ public class Register_1 extends javax.swing.JFrame {
                 }
                 //Ten dang nhap khong hop le
                 if (username.getText().contains("@gmail.com") == false) {
-                    JOptionPane.showMessageDialog(null, "Tên đăng nhập phải là email");
+                    JOptionPane.showMessageDialog(null, "Tên đăng nhập phải là email (@gmail.com)");
                     return;
                 }
-                if (tkbus.isExistTK(username.getText())) {
+                if (khbus.isExistUser(username.getText())) {
                     JOptionPane.showMessageDialog(null, "Tài khoản đã tồn tại");
                     return ;
                 }
@@ -331,11 +329,11 @@ public class Register_1 extends javax.swing.JFrame {
         }
         //Ten dang nhap khong hop le
         if (username.getText().contains("@gmail.com") == false) {
-            JOptionPane.showMessageDialog(null, "Tên đăng nhập phải là email");
+            JOptionPane.showMessageDialog(null, "Tên đăng nhập phải là email (@gmail.com)");
             return false;
         }
         //Ten dang nhap bi trung
-        if (tkbus.isExistTK(username.getText())) {
+        if (khbus.isExistUser(username.getText())) {
             JOptionPane.showMessageDialog(null, "Tài khoản đã tồn tại");
             return false;
         }

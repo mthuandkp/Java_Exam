@@ -23,7 +23,6 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.BaseFont;
-import static com.itextpdf.text.pdf.PdfDictionary.FONT;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -31,7 +30,6 @@ import java.awt.FileDialog;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
-import javafx.scene.text.Text;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 

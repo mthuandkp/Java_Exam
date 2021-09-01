@@ -17,6 +17,8 @@ public class KhachHang {
     private LocalDate NgaySinh;
     private String DiaChi;
     private String SDT;
+    private String TenDangNhap;
+    private String MatKhau;
     private boolean TrangThai;
 
     public KhachHang() {
@@ -31,12 +33,23 @@ public class KhachHang {
         this.SDT = SDT;
     }
 
-    public KhachHang(int MaKhachHang, String TenKhachHang, LocalDate NgaySinh, String DiaChi, String SDT, boolean TrangThai) {
+    public KhachHang(int MaKhachHang, String TenDangNhap, String MatKhau, boolean TrangThai) {
+        this.MaKhachHang = MaKhachHang;
+        this.TenDangNhap = TenDangNhap;
+        this.MatKhau = MatKhau;
+        this.TrangThai = TrangThai;
+    }
+    
+    
+
+    public KhachHang(int MaKhachHang, String TenKhachHang, LocalDate NgaySinh, String DiaChi, String SDT,String TenDangNhap,String MatKhau, boolean TrangThai) {
         this.MaKhachHang = MaKhachHang;
         this.TenKhachHang = TenKhachHang;
         this.NgaySinh = NgaySinh;
         this.DiaChi = DiaChi;
         this.SDT = SDT;
+        this.TenDangNhap = TenDangNhap;
+        this.MatKhau = MatKhau;
         this.TrangThai = TrangThai;
     }
     
@@ -89,13 +102,31 @@ public class KhachHang {
     public void setTrangThai(boolean TrangThai) {
         this.TrangThai = TrangThai;
     }
-    
-    
+
+    public String getTenDangNhap() {
+        return TenDangNhap;
+    }
+
+    public void setTenDangNhap(String TenDangNhap) {
+        this.TenDangNhap = TenDangNhap;
+    }
+
+    public String getMatKhau() {
+        return MatKhau;
+    }
+
+    public void setMatKhau(String MatKhau) {
+        this.MatKhau = MatKhau;
+    }
 
     @Override
     public String toString() {
-        return "KhachHang{" + "MaKhachHang=" + MaKhachHang + ", TenKhachHang=" + TenKhachHang + ", NgaySinh=" + NgaySinh + ", DiaChi=" + DiaChi + ", SDT=" + SDT + '}';
+        return "KhachHang{" + "MaKhachHang=" + MaKhachHang + ", TenKhachHang=" + TenKhachHang + ", NgaySinh=" + NgaySinh + ", DiaChi=" + DiaChi + ", SDT=" + SDT + ", TenDangNhap=" + TenDangNhap + ", MatKhau=" + MatKhau + ", TrangThai=" + TrangThai + '}';
     }
+    
+    
+
+    
     
     
     

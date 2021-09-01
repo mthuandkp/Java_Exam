@@ -13,7 +13,6 @@ import GUI.QLKhuyenMai.QuanLyKhuyenMai;
 import GUI.QLNhanVien.QuanLyNhanVien;
 import GUI.QLPhieuNhap.QuanLyPhieuNhap;
 import GUI.QLSach.QuanLySach;
-import GUI.QLTaiKhoanKH.QuanLyTaiKhoan;
 import GUI.QLTheLoai.QuanLyTheLoai;
 import java.awt.Color;
 import java.awt.Component;
@@ -33,7 +32,6 @@ public class Admin extends javax.swing.JFrame {
     JPanel book = new QuanLySach();
     JPanel bill = new QuanLyHoaDon();
     JPanel receipt = null;
-    JPanel accountCus = new QuanLyTaiKhoan();
     JPanel staff = new QuanLyNhanVien();
     JPanel supplier = new GUI.QLNhaCungCap.QuanLyNhaCungCap();
     JPanel customer = new QuanLyKhachHang();
@@ -86,7 +84,6 @@ public class Admin extends javax.swing.JFrame {
         leftControl = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
@@ -155,21 +152,13 @@ public class Admin extends javax.swing.JFrame {
         jButton3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         leftControl.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 290, 75));
 
-        jButton5.setBackground(new java.awt.Color(255, 255, 255));
-        jButton5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(153, 51, 255));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Admin/account.png"))); // NOI18N
-        jButton5.setText("Quản Lý Tài Khoản");
-        jButton5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        leftControl.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 290, 75));
-
         jButton6.setBackground(new java.awt.Color(255, 255, 255));
         jButton6.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton6.setForeground(new java.awt.Color(153, 51, 255));
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Admin/customer.png"))); // NOI18N
         jButton6.setText("Quản Lý Khách Hàng");
         jButton6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        leftControl.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 290, 70));
+        leftControl.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 290, 80));
 
         jButton7.setBackground(new java.awt.Color(255, 255, 255));
         jButton7.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -193,7 +182,7 @@ public class Admin extends javax.swing.JFrame {
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Admin/sale_64px.png"))); // NOI18N
         jButton8.setText("Quản Lý Khuyến Mãi");
         jButton8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        leftControl.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 550, 290, 90));
+        leftControl.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 290, 90));
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -218,7 +207,7 @@ public class Admin extends javax.swing.JFrame {
         jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Admin/keyboard_64px.png"))); // NOI18N
         jButton10.setText("Quản Lý Thể Loại");
         jButton10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        leftControl.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 630, 290, 90));
+        leftControl.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 570, 290, 90));
 
         background.add(leftControl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 290, 740));
 
@@ -298,7 +287,6 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
@@ -352,10 +340,10 @@ public class Admin extends javax.swing.JFrame {
                         addJPanelIntoContent(receipt);
                         break;
                     }
-                    case "Quản Lý Tài Khoản":{
+                    /*case "Quản Lý Tài Khoản":{
                         addJPanelIntoContent(accountCus);
                         break;
-                    }
+                    }*/
                     case "Quản Lý Nhân Viên":{
                         staff = new QuanLyNhanVien(nv);
                         addJPanelIntoContent(staff);

@@ -4,20 +4,13 @@
  * and open the template in the editor.
  */
 package GUI.QLTheLoai;
-
-import GUI.QLTaiKhoanKH.*;
-import BUS.TaiKhoanBus;
 import BUS.TheLoaiBus;
 import DTO.NhanVien;
-import DTO.TaiKhoan;
 import DTO.TheLoai;
-import Test.*;
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;

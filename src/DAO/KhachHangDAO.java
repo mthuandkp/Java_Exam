@@ -26,7 +26,7 @@ public class KhachHangDAO {
         ResultSet rs = conn.sqlExcute("select * from khachhang");
         try {
             while(rs.next()){
-                data.add(new KhachHang(rs.getInt(1), rs.getString(2), rs.getDate(3).toLocalDate(),rs.getString(4),rs.getString(5),rs.getBoolean(6)));
+                data.add(new KhachHang(rs.getInt(1), rs.getString(2), rs.getDate(3).toLocalDate(),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getBoolean(8)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(KhachHangDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -43,26 +43,39 @@ public class KhachHangDAO {
     }
     
     public boolean addCustomer(KhachHang kh){
-        String qry = "INSERT INTO `khachhang`(`MaKhachHang`, `TenKhachHang`, `NgaySinh`, `DiaChi`, `SDT`, `TrangThai`) "
+        String qry = "INSERT INTO `khachhang`(`MaKhachHang`, `TenKhachHang`, `NgaySinh`, `DiaChi`, `SDT`, `TenDangNhap`, `MatKhau`, `TrangThai`) "
                 + "VALUES ("
                 +kh.getMaKhachHang()+",'"
                 +kh.getTenKhachHang()+"','"
                 +kh.getNgaySinh().toString()+"','"
                 +kh.getDiaChi()+"','"
-                +kh.getSDT()+"',"
+                +kh.getSDT()+"','"
+                +kh.getTenDangNhap()+"','"
+                +kh.getMatKhau()+"',"
                 +kh.isTrangThai()+");";
+        
         return conn.sqlUpdate(qry);
     }
-    public boolean addKH(KhachHang kh){
-        String qry ="INSERT INTO `khachhang`(`MaKhachHang`, `TenKhachHang`, `NgaySinh`, `DiaChi`, `SDT`) "
-                + "VALUES ("+kh.getMaKhachHang()+",'"+kh.getTenKhachHang()+"','"
-                +kh.getNgaySinh().toString()+"','"+kh.getDiaChi()+"','"+kh.getSDT()+"')";
-        return conn.sqlUpdate(qry);
-    }
+    
     public boolean updateKH(KhachHang kh){
-        String qry ="UPDATE `khachhang` SET `TenKhachHang`='"
-                +kh.getTenKhachHang()+"',`NgaySinh`='"+kh.getNgaySinh().toString()+"',`DiaChi`='"
-                +kh.getDiaChi()+"',`SDT`='"+kh.getSDT()+"' WHERE `MaKhachHang`="+kh.getMaKhachHang()+"";
+        String qry ="UPDATE `khachhang` SET "
+                + "`TenKhachHang`='"+kh.getTenKhachHang()+"',"
+                + "`NgaySinh`='"+kh.getNgaySinh().toString()+"',"
+                + "`DiaChi`='"+kh.getDiaChi()+"',"
+                + "`SDT`='"+kh.getSDT() +"',"
+                + "`MatKhau`='"+kh.getMatKhau()
+                +"' WHERE `MaKhachHang`="+kh.getMaKhachHang()+"";
+        //System.out.println(qry);
         return conn.sqlUpdate(qry);
     }
+    
+    public boolean updatePassword(String user, String password){
+        String qry = "UPDATE `khachhang` SET `MatKhau`='"+password+"' WHERE `TenDangNhap` = '" + user + "';";
+        return conn.sqlUpdate(qry);
+    }
+    
+    public boolean changeStatus(int idCus,boolean status){
+         String qry = "UPDATE `khachhang` SET `TrangThai`="+status+" WHERE `MaKhachHang` = "+idCus+";";
+        return conn.sqlUpdate(qry);
+     }
 }

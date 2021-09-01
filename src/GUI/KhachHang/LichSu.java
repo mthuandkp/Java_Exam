@@ -81,27 +81,27 @@ public class LichSu extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         add(scrollContent, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 22, 1060, 327));
 
-        sumOfBill.setFont(new java.awt.Font("Roboto", 1, 36)); // NOI18N
+        sumOfBill.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
         sumOfBill.setForeground(new java.awt.Color(255, 0, 0));
         sumOfBill.setText("Tổng số hóa đơn :");
         add(sumOfBill, new org.netbeans.lib.awtextra.AbsoluteConstraints(59, 367, 615, -1));
 
-        waitSubmitBill.setFont(new java.awt.Font("Roboto", 0, 36)); // NOI18N
+        waitSubmitBill.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
         waitSubmitBill.setForeground(new java.awt.Color(239, 176, 31));
         waitSubmitBill.setText("Chờ xác nhận :");
         add(waitSubmitBill, new org.netbeans.lib.awtextra.AbsoluteConstraints(177, 416, 481, -1));
 
-        submitedBill.setFont(new java.awt.Font("Roboto", 0, 36)); // NOI18N
+        submitedBill.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
         submitedBill.setForeground(new java.awt.Color(2, 156, 241));
         submitedBill.setText("Đã Xác Nhận :");
         add(submitedBill, new org.netbeans.lib.awtextra.AbsoluteConstraints(177, 471, 474, -1));
 
-        receivedBill.setFont(new java.awt.Font("Roboto", 0, 36)); // NOI18N
+        receivedBill.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
         receivedBill.setForeground(new java.awt.Color(19, 0, 255));
         receivedBill.setText("Đã Nhận :");
         add(receivedBill, new org.netbeans.lib.awtextra.AbsoluteConstraints(177, 522, 427, -1));
 
-        jPanel1.setBackground(new java.awt.Color(2, 182, 116));
+        jPanel1.setBackground(new java.awt.Color(0, 75, 255));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -131,7 +131,7 @@ public class LichSu extends javax.swing.JPanel {
 
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 540, 60, 10));
 
-        jPanel3.setBackground(new java.awt.Color(2, 182, 116));
+        jPanel3.setBackground(new java.awt.Color(254, 87, 87));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -146,7 +146,7 @@ public class LichSu extends javax.swing.JPanel {
 
         add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 430, 60, 10));
 
-        jPanel4.setBackground(new java.awt.Color(2, 182, 116));
+        jPanel4.setBackground(new java.awt.Color(243, 253, 34));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -159,7 +159,7 @@ public class LichSu extends javax.swing.JPanel {
             .addGap(0, 10, Short.MAX_VALUE)
         );
 
-        add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 490, 60, 10));
+        add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 480, 60, 10));
     }// </editor-fold>//GEN-END:initComponents
 
 

@@ -9,13 +9,10 @@ import BUS.KhachHangBus;
 import DTO.KhachHang;
 import DTO.NhanVien;
 import ProcessingFunction.WriteExcel;
-import Test.*;
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -75,6 +72,7 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(1120, 640));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        table.setBackground(new java.awt.Color(254, 254, 254));
         table.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -88,7 +86,6 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 1030, 450));
 
-        exportExcelBtn.setBackground(new java.awt.Color(255, 255, 255));
         exportExcelBtn.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         exportExcelBtn.setForeground(new java.awt.Color(153, 51, 255));
         exportExcelBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/export_csv_60px.png"))); // NOI18N
@@ -96,7 +93,6 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
         exportExcelBtn.setBorder(null);
         add(exportExcelBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 550, 180, -1));
 
-        exportPdfBtn2.setBackground(new java.awt.Color(255, 255, 255));
         exportPdfBtn2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         exportPdfBtn2.setForeground(new java.awt.Color(153, 51, 255));
         exportPdfBtn2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/search_50px.png"))); // NOI18N
@@ -104,7 +100,6 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
         exportPdfBtn2.setBorder(null);
         add(exportPdfBtn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, 180, -1));
 
-        editBtn1.setBackground(new java.awt.Color(255, 255, 255));
         editBtn1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         editBtn1.setForeground(new java.awt.Color(153, 51, 255));
         editBtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/refresh_64px.png"))); // NOI18N
@@ -112,7 +107,6 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
         editBtn1.setBorder(null);
         add(editBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 30, 180, -1));
 
-        deleteBtn.setBackground(new java.awt.Color(255, 255, 255));
         deleteBtn.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         deleteBtn.setForeground(new java.awt.Color(153, 51, 255));
         deleteBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/delete_48px.png"))); // NOI18N
@@ -120,7 +114,6 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
         deleteBtn.setBorder(null);
         add(deleteBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 180, -1));
 
-        statisticalBtn.setBackground(new java.awt.Color(255, 255, 255));
         statisticalBtn.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         statisticalBtn.setForeground(new java.awt.Color(153, 51, 255));
         statisticalBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/area_chart_48px.png"))); // NOI18N
@@ -194,7 +187,7 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
     }
     
     private void initTable() {
-        String []header = {"Mã khách hàng","Tên khách hàng","Ngày sinh","Địa chỉ","Sdt","Trạng Thái"};
+        String []header = {"Mã khách hàng","Tên khách hàng","Ngày sinh","Địa chỉ","Sdt","Tên đăng nhập","Mật khẩu","Trạng Thái"};
         DefaultTableModel defaults = (DefaultTableModel) table.getModel();
         Arrays.stream(header).forEach(s -> {
             defaults.addColumn(s);
@@ -207,15 +200,18 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
         removeAllTableData();
         DefaultTableModel defaults = (DefaultTableModel) table.getModel();
         ArrayList <KhachHang> arrKH = khbus.getAllData();
+        
         for(KhachHang arr: arrKH)
         {
-            Object [] arrO = new Object[6];
+            Object [] arrO = new Object[8];
             arrO[0] = arr.getMaKhachHang();
             arrO[1] = arr.getTenKhachHang();
             arrO[2] = arr.getNgaySinh().toString();
             arrO[3] = arr.getDiaChi();
             arrO[4] = arr.getSDT();
-            arrO[5] = arr.isTrangThai();
+            arrO[5] = arr.getTenDangNhap();
+            arrO[6] = arr.getMatKhau();
+            arrO[7] = arr.isTrangThai();
             defaults.addRow(arrO);
         }
         

@@ -6,10 +6,7 @@
 package BUS;
 
 import DAO.KhachHangDAO;
-import DAO.TaiKhoanDao;
 import DTO.KhachHang;
-import ProcessingFunction.ConnectionDB;
-import ProcessingFunction.Other;
 import static ProcessingFunction.Other.convertTextToEnglish;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -20,7 +17,7 @@ import java.util.ArrayList;
  */
 public class KhachHangBus {
     KhachHangDAO khdao = new KhachHangDAO();
-    TaiKhoanDao tkdao = new TaiKhoanDao();
+    
     
     public ArrayList<KhachHang> getAllData(){
         return khdao.getAllData();
@@ -49,10 +46,10 @@ public class KhachHangBus {
     
     public boolean Update (int makhachhang, boolean trangthai)
     {
-        return khdao.Update(makhachhang, trangthai) && tkdao.blockAccountCustomer(makhachhang,trangthai);
+        return khdao.Update(makhachhang, trangthai);
     }
 
-    public ArrayList<KhachHang> searchData(int id, String name, int status, String date, String phone, String address) {
+    public ArrayList<KhachHang> searchData(int id, String name, int status, String date, String phone, String address,String username) {
         ArrayList<KhachHang> data = getAllData();
         ArrayList<KhachHang> result = new ArrayList<>();
         for(KhachHang kh:data){
@@ -65,6 +62,7 @@ public class KhachHangBus {
             if(date.compareTo("")!= 0 && date.compareTo(kh.getNgaySinh().toString()) != 0) continue;
             if(phone.compareTo("") != 0 && kh.getSDT().contains(phone) == false) continue;
             if(address.compareTo("") != 0 && convertTextToEnglish(kh.getDiaChi()).contains(convertTextToEnglish(address)) == false) continue;
+            if(username.compareTo("") != 0 && convertTextToEnglish(kh.getTenDangNhap()).contains(convertTextToEnglish(username)) == false) continue;
             result.add(kh);
         }
         return result;
@@ -123,22 +121,34 @@ public class KhachHangBus {
     }
     
     public boolean addKh(KhachHang kh){
-        return khdao.addKH(kh);
+        return khdao.addCustomer(kh);
     }
     
     public boolean updateKH(KhachHang kh){
         return khdao.updateKH(kh);
     }
-    public KhachHang getKHbyID(int makh){
-        ArrayList<KhachHang> data = khdao.getAllData();
-        if (data == null) {
-            return null;
+
+    public boolean isExistUser(String user) {
+        ArrayList<KhachHang> data = getAllData();
+        for(KhachHang kh : data){
+            if(kh.getTenDangNhap().compareTo(user) == 0){
+                return true;
+            }
         }
-        for(KhachHang a : data){
-            if (makh == a.getMaKhachHang()) {
-                return a;
+        return false;
+    }
+
+    public KhachHang getAccountByUser(String user) {
+        ArrayList<KhachHang> data = getAllData();
+        for(KhachHang kh : data){
+            if(kh.getTenDangNhap().compareTo(user) == 0){
+                return kh;
             }
         }
         return null;
+    }
+
+    public boolean updatePassword(String text, String pass) {
+        return khdao.updatePassword(text, pass);
     }
 }

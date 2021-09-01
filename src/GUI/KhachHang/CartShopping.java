@@ -9,12 +9,10 @@ import BUS.ChiTietHoaDonBus;
 import BUS.HoaDonBus;
 import BUS.KhuyenMaiBus;
 import BUS.SachBus;
-import BUS.TaiKhoanBus;
 import DTO.ChiTietHoaDon;
 import DTO.HoaDon;
 import DTO.KhachHang;
 import DTO.KhuyenMai;
-import DTO.TaiKhoan;
 import ProcessingFunction.Other;
 import ProcessingFunction.SendEmail;
 import ProcessingFunction.convertMoneyToVietnameseText;
@@ -51,7 +49,6 @@ public class CartShopping extends javax.swing.JPanel {
     SachBus sachbus = new SachBus();
     HoaDonBus hdbus = new HoaDonBus();
     ChiTietHoaDonBus cthdbus = new ChiTietHoaDonBus();
-    TaiKhoanBus tkbus = new TaiKhoanBus();
     KhachHang kh = null;
 
     /**
@@ -339,9 +336,9 @@ public class CartShopping extends javax.swing.JPanel {
                         + "</div>\n"
                         + "<h1 style=\"width: 100%;text-align: center;color:blue;\">Cam on quy khach da mua sach tai cua hang.Cua hang se xac nhan hoa don trong thoi gian som nhat </h1>\n"
                         + "</div>";
-                TaiKhoan tk = tkbus.getTKById(kh.getMaKhachHang());
+                
                 try {
-                    SendEmail send = new SendEmail(tk.getTenDangNhap(), "Dat hang thanh cong", html);
+                    SendEmail send = new SendEmail(kh.getTenDangNhap(), "Dat hang thanh cong", html);
                     send.run();
                     dataCart = new ArrayList<>();
                     loadData();

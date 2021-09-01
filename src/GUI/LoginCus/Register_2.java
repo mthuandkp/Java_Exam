@@ -7,10 +7,8 @@ package GUI.LoginCus;
 
 
 import BUS.KhachHangBus;
-import BUS.TaiKhoanBus;
 import DTO.ChiTietHoaDon;
 import DTO.KhachHang;
-import DTO.TaiKhoan;
 import GUI.KhachHang.Home;
 import ProcessingFunction.check;
 import java.awt.Color;
@@ -29,9 +27,8 @@ import javax.swing.JOptionPane;
  * @author MINHTHUAN
  */
 public class Register_2 extends javax.swing.JFrame {
-    TaiKhoan tk = null;
+    KhachHang kh = null;
     KhachHangBus khbus = new KhachHangBus();
-    TaiKhoanBus tkbus = new TaiKhoanBus();
     ArrayList <ChiTietHoaDon> dataCart = new ArrayList<>();
     /**
      * Creates new form Register_1
@@ -42,16 +39,16 @@ public class Register_2 extends javax.swing.JFrame {
         performEvent();
     }
 
-    public Register_2(TaiKhoan taikhoan) {
-        this.tk = new TaiKhoan(taikhoan.getTenDangNhap(), taikhoan.getMatKhau(), taikhoan.getMaKhachHang(), taikhoan.isTrangThai());
+    public Register_2(KhachHang khachhang) {
+        this.kh = new KhachHang(khachhang.getMaKhachHang(), khachhang.getTenDangNhap(), khachhang.getMatKhau(), khachhang.isTrangThai());
         initComponents();
         initialization();
         performEvent();
     }
     
-    public Register_2(TaiKhoan taikhoan,ArrayList<ChiTietHoaDon> datatmp) {
+    public Register_2(KhachHang khachhang,ArrayList<ChiTietHoaDon> datatmp) {
         setDataCart(datatmp);
-        this.tk = new TaiKhoan(taikhoan.getTenDangNhap(), taikhoan.getMatKhau(), taikhoan.getMaKhachHang(), taikhoan.isTrangThai());
+        this.kh = new KhachHang(khachhang.getMaKhachHang(), khachhang.getTenDangNhap(), khachhang.getMatKhau(), khachhang.isTrangThai());
         initComponents();
         initialization();
         performEvent();
@@ -97,7 +94,7 @@ public class Register_2 extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        title.setFont(new java.awt.Font("Vni 07 WaterBrushROB", 1, 24)); // NOI18N
+        title.setFont(new java.awt.Font("UVN Ky Thuat", 1, 24)); // NOI18N
         title.setForeground(new java.awt.Color(255, 255, 255));
         title.setText("Đăng Ký 2/2");
         getContentPane().add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, -1, -1));
@@ -150,7 +147,6 @@ public class Register_2 extends javax.swing.JFrame {
         returnPrevious.setText("Trở về trang trước");
         getContentPane().add(returnPrevious, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 400, -1));
 
-        exitBtn.setBackground(new java.awt.Color(255, 255, 255));
         exitBtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         exitBtn.setForeground(new java.awt.Color(51, 51, 255));
         exitBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/export_64px.png"))); // NOI18N
@@ -274,15 +270,13 @@ public class Register_2 extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 
                 if(checkInput() == false) return;
-                KhachHang kh = new KhachHang(
-                        tk.getMaKhachHang(), 
-                        name.getText(), 
-                        LocalDate.parse(dateOfBirth.getText(), DateTimeFormatter.ofPattern("yyyy-MM-dd")), 
-                        address.getText(), 
-                        phone.getText(),
-                        true
-                );
-                if(khbus.addCustomer(kh) && tkbus.addAccount(getTk())){
+                
+                kh.setTenKhachHang(name.getText());
+                kh.setNgaySinh(LocalDate.parse(dateOfBirth.getText(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+                kh.setSDT(phone.getText());
+                kh.setDiaChi(address.getText());
+      
+                if(khbus.addCustomer(kh)){
                     JOptionPane.showMessageDialog(null, "Đăng ký thành công vui lòng đăng nhập");
                     dispose();
                     new Login(dataCart).setVisible(true);
@@ -332,12 +326,12 @@ public class Register_2 extends javax.swing.JFrame {
         return true;
     }
 
-    public TaiKhoan getTk() {
-        return tk;
+    public KhachHang getTk() {
+        return kh;
     }
 
-    public void setTk(TaiKhoan tk) {
-        this.tk = tk;
+    public void setKh(KhachHang kh) {
+        this.kh = kh;
     }
     
     

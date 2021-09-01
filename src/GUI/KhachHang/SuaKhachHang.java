@@ -62,10 +62,10 @@ public class SuaKhachHang extends javax.swing.JFrame {
         diachi = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         sodienthoai = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        matkhau = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        Background.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel9.setText("Mã Khách Hàng:");
@@ -114,9 +114,14 @@ public class SuaKhachHang extends javax.swing.JFrame {
         diachi.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel13.setText("Số Điện Thoại:");
+        jLabel13.setText("Mật Khẩu:");
 
         sodienthoai.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel14.setText("Số Điện Thoại:");
+
+        matkhau.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 
         javax.swing.GroupLayout BackgroundLayout = new javax.swing.GroupLayout(Background);
         Background.setLayout(BackgroundLayout);
@@ -130,7 +135,8 @@ public class SuaKhachHang extends javax.swing.JFrame {
                         .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel10)
                             .addComponent(jLabel11)
-                            .addComponent(jLabel9))
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel13))
                         .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(BackgroundLayout.createSequentialGroup()
                                 .addGap(3, 121, Short.MAX_VALUE)
@@ -145,13 +151,17 @@ public class SuaKhachHang extends javax.swing.JFrame {
                                     .addComponent(ngaysinh, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(makhachhang, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(diachi, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(sodienthoai, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(sodienthoai, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(matkhau, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(BackgroundLayout.createSequentialGroup()
                         .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel13))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(BackgroundLayout.createSequentialGroup()
+                                .addComponent(jLabel12)
+                                .addGap(79, 79, 79))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BackgroundLayout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addComponent(image, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
@@ -171,19 +181,26 @@ public class SuaKhachHang extends javax.swing.JFrame {
                 .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(ngaysinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(image, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(BackgroundLayout.createSequentialGroup()
+                        .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(image, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(BackgroundLayout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(diachi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(sodienthoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(BackgroundLayout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addComponent(jLabel12)
-                        .addGap(32, 32, 32)
-                        .addComponent(jLabel13))
-                    .addGroup(BackgroundLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(diachi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(sodienthoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel14)
+                        .addGap(21, 21, 21)))
+                .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(matkhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(reset)
                     .addComponent(update))
@@ -232,6 +249,11 @@ public class SuaKhachHang extends javax.swing.JFrame {
             sodienthoai.requestFocus();
             return;
         }
+        if (matkhau.getText().compareTo("") == 0) {
+            JOptionPane.showMessageDialog(null, "Nhập mật khẩu");
+            matkhau.requestFocus();
+            return;
+        }
         if (sodienthoai.getText().length() != 10) {
             JOptionPane.showMessageDialog(null, "Số điện thoại phải là 10 số!");
             sodienthoai.requestFocus();
@@ -274,7 +296,7 @@ public class SuaKhachHang extends javax.swing.JFrame {
             sodienthoai.setText("");
             return;
         }
-        KhachHang kh1 = khachhangbus.getKHbyID(Integer.valueOf(makhachhang.getText()));
+        KhachHang kh1 = khachhangbus.getKHById(Integer.valueOf(makhachhang.getText()));
         if (kh1 == null) {
             JOptionPane.showMessageDialog(null, "Lỗi khi load dữ liệu");
             return;
@@ -329,8 +351,10 @@ public class SuaKhachHang extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField makhachhang;
+    private javax.swing.JTextField matkhau;
     private javax.swing.JTextField ngaysinh;
     private javax.swing.JButton reset;
     private javax.swing.JTextField sodienthoai;

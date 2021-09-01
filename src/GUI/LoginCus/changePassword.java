@@ -5,10 +5,9 @@
  */
 package GUI.LoginCus;
 
-import BUS.TaiKhoanBus;
+import BUS.KhachHangBus;
 import DTO.ChiTietHoaDon;
 import DTO.KhachHang;
-import DTO.TaiKhoan;
 import GUI.KhachHang.Home;
 import ProcessingFunction.SendEmail;
 import java.awt.Color;
@@ -27,7 +26,7 @@ public class changePassword extends javax.swing.JFrame {
     ArrayList<ChiTietHoaDon> dataCart = new ArrayList<>();
     KhachHang kh = new KhachHang();
     private int code = 0;
-    TaiKhoanBus tkbus = new TaiKhoanBus();
+    KhachHangBus khbus = new KhachHangBus();
     /**
      * Creates new form changePassword
      */
@@ -106,15 +105,14 @@ public class changePassword extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        background.setBackground(new java.awt.Color(255, 255, 255));
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         title.setBackground(new java.awt.Color(102, 102, 255));
-        title.setFont(new java.awt.Font("Vni 07 WaterBrushROB", 1, 36)); // NOI18N
+        title.setFont(new java.awt.Font("UVN Ky Thuat", 1, 36)); // NOI18N
         title.setForeground(new java.awt.Color(204, 255, 0));
         title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         title.setText("Thay đổi mật khẩu");
-        background.add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 50, 400, -1));
+        background.add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 400, -1));
 
         forgetPassword.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         forgetPassword.setForeground(new java.awt.Color(255, 255, 255));
@@ -146,7 +144,6 @@ public class changePassword extends javax.swing.JFrame {
         confirm.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         background.add(confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 370, 250, 40));
 
-        confirmBtn.setBackground(new java.awt.Color(255, 255, 255));
         confirmBtn.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         confirmBtn.setForeground(new java.awt.Color(153, 51, 255));
         confirmBtn.setText("Xác nhận");
@@ -190,7 +187,6 @@ public class changePassword extends javax.swing.JFrame {
         forgetPassword1.setText("Mật khẩu cũ:");
         background.add(forgetPassword1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
 
-        logoutBtn.setBackground(new java.awt.Color(255, 255, 255));
         logoutBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/delete_26px.png"))); // NOI18N
         background.add(logoutBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 50, -1));
 
@@ -296,21 +292,18 @@ public class changePassword extends javax.swing.JFrame {
                         break;
                     }
                     case "code":{
-                        TaiKhoan tk = tkbus.getTKById(kh.getMaKhachHang());
+                        
                         Random rd = new Random();
                         setCode(10000 + rd.nextInt(99999-10000+1));
                         String html = "<div style=\"width: 80%;margin-left: 10%;background-color: rgb(226, 224, 224);border-radius: 2rem;height: 20rem;\">\n" +
-"		<div style=\"background-color: cadetblue;height: 4rem;border-top-left-radius: 2rem;border-top-right-radius: 2rem;\">\n" +
-"			<h1 style=\"width: 100%;text-align: center;color: rgb(255, 255, 255);padding-top: 1rem;\">LAY MA XAC NHAN</h1>\n" +
-"		</div>\n" +
-"		<h1 style=\"width: 100%;text-align: center;color:blue;\">MA XAC NHAN : "+getCode()+"</h1>\n" +
-"               </div>";
+"                                     <div style=\"background-color: cadetblue;height: 4rem;border-top-left-radius: 2rem;border-top-right-radius: 2rem;\">\n" +
+"                                     <h1 style=\"width: 100%;text-align: center;color: rgb(255, 255, 255);padding-top: 1rem;\">LAY MA XAC NHAN</h1>\n" +
+"                                     </div>\n" +"<h1 style=\"width: 100%;text-align: center;color:blue;\">MA XAC NHAN : "+getCode()+"</h1>\n" +"</div>";
                         try {
-                            SendEmail.sendMail(tk.getTenDangNhap(), "Thay đổi mật khẩu", html);
+                            SendEmail.sendMail(kh.getTenDangNhap(), "Thay đổi mật khẩu", html);
                         } catch (Exception ex) {
                             JOptionPane.showMessageDialog(null, "Không thể lấy mã code.Vui lòng thử lại");
                         }
-                        
                         break;
                     }
                     case "Xác nhận":{
@@ -334,12 +327,12 @@ public class changePassword extends javax.swing.JFrame {
                             JOptionPane.showMessageDialog(null, "Mã xác nhận không chính xác");
                             return;
                         }
-                        TaiKhoan tk = tkbus.getTKById(kh.getMaKhachHang());
-                        if(tk.getMatKhau().compareTo(String.valueOf(oldPassword.getPassword())) != 0){
+                        
+                        if(kh.getMatKhau().compareTo(String.valueOf(oldPassword.getPassword())) != 0){
                             JOptionPane.showMessageDialog(null, "Mật khẩu cũ không chính xác");
                             return;
                         }
-                        if(tkbus.updatePassword(tk.getTenDangNhap(), String.valueOf(password.getPassword()))){
+                        if(khbus.updatePassword(kh.getTenDangNhap(), String.valueOf(password.getPassword()))){
                             JOptionPane.showMessageDialog(null, "Thay đổi thành công vui lòng đăng nhập");
                             new Login(dataCart).setVisible(true);
                             dispose();

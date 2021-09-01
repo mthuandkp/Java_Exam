@@ -5,7 +5,7 @@
  */
 package GUI.LoginCus;
 
-import BUS.TaiKhoanBus;
+import BUS.KhachHangBus;
 import ProcessingFunction.SendEmail;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
  * @author MINHTHUAN
  */
 public class ForgetPassword extends javax.swing.JFrame {
-    TaiKhoanBus tkbus = new TaiKhoanBus();
+    KhachHangBus khbus = new KhachHangBus();
     private int code  = 0;
     /**
      * Creates new form ForgetPassword
@@ -75,15 +75,14 @@ public class ForgetPassword extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        background.setBackground(new java.awt.Color(255, 255, 255));
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         title.setBackground(new java.awt.Color(102, 102, 255));
-        title.setFont(new java.awt.Font("Vni 07 WaterBrushROB", 1, 36)); // NOI18N
+        title.setFont(new java.awt.Font("UVN Ky Thuat", 1, 36)); // NOI18N
         title.setForeground(new java.awt.Color(204, 255, 0));
         title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         title.setText("Khôi phục mật khẩu");
-        background.add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 50, 400, -1));
+        background.add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 400, -1));
 
         forgetPassword3.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         forgetPassword3.setForeground(new java.awt.Color(255, 255, 255));
@@ -125,7 +124,6 @@ public class ForgetPassword extends javax.swing.JFrame {
         confirm.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         background.add(confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 370, 250, 40));
 
-        confirmBtn.setBackground(new java.awt.Color(255, 255, 255));
         confirmBtn.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         confirmBtn.setForeground(new java.awt.Color(153, 51, 255));
         confirmBtn.setText("Khôi phục");
@@ -281,7 +279,7 @@ public class ForgetPassword extends javax.swing.JFrame {
                 if(checkInput() == false){
                     return;
                 }
-                if(tkbus.updatePassword(username.getText(), String.valueOf(password.getPassword()))){
+                if(khbus.updatePassword(username.getText(), String.valueOf(password.getPassword()))){
                     JOptionPane.showMessageDialog(null, "Khôi phục thành công.Vui lòng đăng nhập lại");
                     new Login().setVisible(true);
                     dispose();
@@ -294,9 +292,10 @@ public class ForgetPassword extends javax.swing.JFrame {
                     return false;
                 }
                 if(username.getText().contains("@gmail.com") == false){
-                    JOptionPane.showMessageDialog(null, "Tài khoản phải là Email");
+                    JOptionPane.showMessageDialog(null, "Tài khoản phải là Email (@gmail.com)");
+                    return false;
                 }
-                if(tkbus.isExistUser(username.getText()) == false){
+                if(khbus.isExistUser(username.getText()) == false){
                     JOptionPane.showMessageDialog(null, "Tài khoản không tồn tại");
                     return false;
                 }
@@ -305,7 +304,7 @@ public class ForgetPassword extends javax.swing.JFrame {
                     return false;
                 }
                 if(String.valueOf(confirmPassword.getPassword()).compareTo("") == 0){
-                    JOptionPane.showMessageDialog(null, "Chưa nhập mật khẩu");
+                    JOptionPane.showMessageDialog(null, "Chưa nhập xác nhận mật khẩu");
                     return false;
                 }
                 if(String.valueOf(password.getPassword()).compareTo(String.valueOf(confirmPassword.getPassword())) != 0){

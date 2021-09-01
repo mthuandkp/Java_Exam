@@ -7,7 +7,6 @@ package GUI.QLKhachHang;
 
 import BUS.KhachHangBus;
 import DTO.KhachHang;
-import GUI.QLTaiKhoanKH.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;

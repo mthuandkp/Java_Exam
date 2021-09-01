@@ -5,12 +5,11 @@
  */
 package GUI.LoginCus;
 
-import BUS.TaiKhoanBus;
+
+import BUS.KhachHangBus;
 import DTO.ChiTietHoaDon;
 import DTO.KhachHang;
-import DTO.TaiKhoan;
 import GUI.KhachHang.Home;
-import ProcessingFunction.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,9 +17,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import java.util.Arrays;
 import javax.swing.*;
 
 /**
@@ -28,9 +25,8 @@ import javax.swing.*;
  * @author MTHUAN
  */
 public class Login extends javax.swing.JFrame {
-
-    TaiKhoanBus tkbus = new TaiKhoanBus();
     ArrayList<ChiTietHoaDon> dataCart = new ArrayList<>();
+    KhachHangBus khbus = new KhachHangBus();
     boolean isFirstClick = true;
 
     /**
@@ -216,30 +212,7 @@ public class Login extends javax.swing.JFrame {
         loginBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (checkInput() == false) {
-                    return;
-                }
-                if (tkbus.isExistUser(username.getText()) == false) {
-                    JOptionPane.showMessageDialog(null, "Tài khoản không tồn tại. Đi đăng ký ngay 1 cái nào :))");
-                    return;
-                }
-                TaiKhoan tk = tkbus.getAccountByUser(username.getText());
-                if (tk.getMatKhau().compareTo(String.valueOf(password.getPassword())) != 0) {
-                    JOptionPane.showMessageDialog(null, "Sai mật khẩu");
-                    if (JOptionPane.showConfirmDialog(null, "Bạn có muốn dùng khôi phục mật khẩu không ?", "Xác nhận", 0) == 0) {
-
-                    }
-                    return;
-                }
-                if (tk.isTrangThai() == false) {
-                    JOptionPane.showMessageDialog(null, "Tài khoản này đã bị khóa vui lòng liên hệ bộ phận CSKH để biết thêm chi tiết");
-                    return;
-                }
-
-                KhachHang kh = tkbus.loginAccount(username.getText(), String.valueOf(password.getPassword()));
-                JOptionPane.showMessageDialog(null, "Đăng nhập thành công. Chào mừng bạn trở lại");
-                new Home(kh, dataCart).setVisible(true);
-                dispose();
+                loginEvent();
             }
         });
 
@@ -279,30 +252,7 @@ public class Login extends javax.swing.JFrame {
         password.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    if (checkInput() == false) {
-                        return;
-                    }
-                    if (tkbus.isExistUser(username.getText()) == false) {
-                        JOptionPane.showMessageDialog(null, "Tài khoản không tồn tại. Đi đăng ký ngay 1 cái nào :))");
-                        return;
-                    }
-                    TaiKhoan tk = tkbus.getAccountByUser(username.getText());
-                    if (tk.getMatKhau().compareTo(String.valueOf(password.getPassword())) != 0) {
-                        JOptionPane.showMessageDialog(null, "Sai mật khẩu rồi nè");
-                        if (JOptionPane.showConfirmDialog(null, "Bạn có muốn dùng khôi phục mật khẩu không ?", "Xác nhận", 0) == 0) {
-
-                        }
-                        return;
-                    }
-                    if (tk.isTrangThai() == false) {
-                        JOptionPane.showMessageDialog(null, "Tài khoản này đã bị khóa vui lòng liên hệ bộ phận CSKH để biết thêm chi tiết");
-                        return;
-                    }
-
-                    KhachHang kh = tkbus.loginAccount(username.getText(), String.valueOf(password.getPassword()));
-                    JOptionPane.showMessageDialog(null, "Đăng nhập thành công");
-                    new Home(kh, dataCart).setVisible(true);
-                    dispose();
+                    loginEvent();
                 }
             }
         });
@@ -346,6 +296,32 @@ public class Login extends javax.swing.JFrame {
 
     public void setDataCart(ArrayList<ChiTietHoaDon> dataCart) {
         this.dataCart = dataCart;
+    }
+    
+    public void loginEvent(){
+        if (checkInput() == false) {
+                    return;
+                }
+                if (khbus.isExistUser(username.getText()) == false) {
+                    JOptionPane.showMessageDialog(null, "Tài khoản không tồn tại. Đi đăng ký ngay 1 cái nào :))");
+                    return;
+                }
+                KhachHang kh = khbus.getAccountByUser(username.getText());
+                if (kh.getMatKhau().compareTo(String.valueOf(password.getPassword())) != 0) {
+                    JOptionPane.showMessageDialog(null, "Sai mật khẩu");
+                    if (JOptionPane.showConfirmDialog(null, "Bạn có muốn dùng khôi phục mật khẩu không ?", "Xác nhận", 0) == 0) {
+
+                    }
+                    return;
+                }
+                if (kh.isTrangThai() == false) {
+                    JOptionPane.showMessageDialog(null, "Tài khoản này đã bị khóa vui lòng liên hệ bộ phận CSKH để biết thêm chi tiết");
+                    return;
+                }
+
+                JOptionPane.showMessageDialog(null, "Đăng nhập thành công. Chào mừng bạn trở lại");
+                new Home(kh, dataCart).setVisible(true);
+                dispose();
     }
 
 }

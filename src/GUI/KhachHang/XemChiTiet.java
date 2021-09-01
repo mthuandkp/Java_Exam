@@ -6,35 +6,28 @@
 package GUI.KhachHang;
 
 import Test.contentDetailViewMore;
-import GUI.QLHoaDon.*;
 import BUS.ChiTietHoaDonBus;
 import BUS.HoaDonBus;
-import GUI.QLPhieuNhap.*;
 import BUS.KhachHangBus;
 import BUS.KhuyenMaiBus;
 import BUS.NhanVienBus;
 import BUS.SachBus;
-import BUS.TaiKhoanBus;
 import DTO.ChiTietHoaDon;
 import DTO.HoaDon;
-import DTO.TaiKhoan;
+import DTO.KhachHang;
 import ProcessingFunction.Other;
 import ProcessingFunction.SendEmail;
 import ProcessingFunction.convertMoneyToVietnameseText;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Arrays;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
-import javax.swing.border.Border;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -48,7 +41,6 @@ public class XemChiTiet extends javax.swing.JFrame {
     KhachHangBus khbus = new KhachHangBus();
     KhuyenMaiBus kmbus = new KhuyenMaiBus();
     SachBus sachbus = new SachBus();
-    TaiKhoanBus tkbus = new TaiKhoanBus();
 
     /**
      * Creates new form XemChiTiet
@@ -296,7 +288,7 @@ public class XemChiTiet extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(hdbus.updateStatusCus(bill.getMaHoaDon())){
-                    TaiKhoan tk = tkbus.getTKById(bill.getMaKhachHang());
+                    KhachHang kh = khbus.getKHById(bill.getMaKhachHang());
                     String html = "<div style=\"width: 80%;margin-left: 10%;background-color: rgb(226, 224, 224);border-radius: 2rem;height: 20rem;\">\n" +
 "		<div style=\"background-color: cadetblue;height: 4rem;border-top-left-radius: 2rem;border-top-right-radius: 2rem;\">\n" +
 "			<h1 style=\"width: 100%;text-align: center;color: rgb(255, 255, 255);padding-top: 1rem;\">CAM ON KHACH HANG</h1>\n" +
@@ -304,7 +296,7 @@ public class XemChiTiet extends javax.swing.JFrame {
 "		<h1 style=\"width: 100%;text-align: center;color:blue;\">Cam on quy khach da chon mua sach tai cua hang. Hen gap lai quy khach lan sau</h1>\n" +
 "               </div>";
                     try {
-                        SendEmail send = new SendEmail(tk.getTenDangNhap(), "Cam on", html);
+                        SendEmail send = new SendEmail(kh.getTenDangNhap(), "Cam on", html);
                         send.run();
                         JOptionPane.showMessageDialog(null, "Xác nhận thành công thành công");
                         processBtn.setVisible(false);

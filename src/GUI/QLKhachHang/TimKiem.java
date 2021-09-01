@@ -7,14 +7,12 @@ package GUI.QLKhachHang;
 
 import BUS.KhachHangBus;
 import DTO.KhachHang;
-import GUI.QLTaiKhoanKH.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -50,7 +48,7 @@ public class TimKiem extends javax.swing.JFrame {
         nameValue = new javax.swing.JTextField();
         nameCheck = new javax.swing.JCheckBox();
         idCheck = new javax.swing.JCheckBox();
-        statusCheck = new javax.swing.JCheckBox();
+        usernameCheck = new javax.swing.JCheckBox();
         statusValue = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
@@ -59,9 +57,11 @@ public class TimKiem extends javax.swing.JFrame {
         phoneCheck = new javax.swing.JCheckBox();
         phoneValue = new javax.swing.JTextField();
         addressCheck = new javax.swing.JCheckBox();
-        addressValue = new javax.swing.JTextField();
+        addressCus = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         searchbtn = new javax.swing.JButton();
+        statusCheck = new javax.swing.JCheckBox();
+        username = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,9 +87,9 @@ public class TimKiem extends javax.swing.JFrame {
         idCheck.setText("Mã khách hàng");
         jPanel1.add(idCheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, -1));
 
-        statusCheck.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        statusCheck.setText("Trạng thái");
-        jPanel1.add(statusCheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, -1, -1));
+        usernameCheck.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        usernameCheck.setText("Tên đăng nhập");
+        jPanel1.add(usernameCheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, -1, -1));
 
         statusValue.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         jPanel1.add(statusValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, 270, -1));
@@ -125,20 +125,26 @@ public class TimKiem extends javax.swing.JFrame {
         addressCheck.setText("Địa chỉ");
         jPanel1.add(addressCheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 220, -1, -1));
 
-        addressValue.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        jPanel1.add(addressValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 220, 270, -1));
+        addressCus.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        jPanel1.add(addressCus, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 220, 270, -1));
 
         jButton1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jButton1.setText("Bỏ chọn");
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 300, 160, -1));
 
-        searchbtn.setBackground(new java.awt.Color(255, 255, 255));
         searchbtn.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         searchbtn.setForeground(new java.awt.Color(102, 102, 102));
         searchbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/search_50px.png"))); // NOI18N
         searchbtn.setText("Tìm Kiếm");
         searchbtn.setBorder(null);
         jPanel1.add(searchbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 300, 180, -1));
+
+        statusCheck.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        statusCheck.setText("Trạng thái");
+        jPanel1.add(statusCheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, -1, -1));
+
+        username.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        jPanel1.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 290, 270, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -194,7 +200,7 @@ public class TimKiem extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox addressCheck;
-    private javax.swing.JTextField addressValue;
+    private javax.swing.JTextField addressCus;
     private javax.swing.JCheckBox dateCheck;
     private javax.swing.JTextField dateValue;
     private javax.swing.JCheckBox idCheck;
@@ -211,6 +217,8 @@ public class TimKiem extends javax.swing.JFrame {
     private javax.swing.JCheckBox statusCheck;
     private javax.swing.JComboBox<String> statusValue;
     private javax.swing.JTable table;
+    private javax.swing.JTextField username;
+    private javax.swing.JCheckBox usernameCheck;
     // End of variables declaration//GEN-END:variables
 
     private void initialization() {
@@ -230,6 +238,7 @@ public class TimKiem extends javax.swing.JFrame {
                 String date = "";
                 String phone = "";
                 String address = "";
+                String user = "";
 
                 if (nameCheck.isSelected() && nameValue.getText().compareTo("") == 0) {
                     JOptionPane.showMessageDialog(null, "Chưa nhập tên khách hàng");
@@ -261,8 +270,13 @@ public class TimKiem extends javax.swing.JFrame {
                         return;
                     }
                 }
-                if (addressCheck.isSelected() && addressValue.getText().compareTo("") == 0) {
+                
+                if (addressCheck.isSelected() && addressCus.getText().compareTo("") == 0) {
                     JOptionPane.showMessageDialog(null, "Chưa nhập địa chỉ");
+                    return;
+                }
+                if(usernameCheck.isSelected() && username.getText().compareTo("") == 0){
+                    JOptionPane.showMessageDialog(null, "Chưa nhập tên đăng nhập cần tìm");
                     return;
                 }
                 if (idCheck.isSelected()) {
@@ -271,7 +285,7 @@ public class TimKiem extends javax.swing.JFrame {
                 if (nameCheck.isSelected()) {
                     name = nameValue.getText();
                 }
-                if (statusCheck.isSelected()) {
+                if (usernameCheck.isSelected()) {
                     status = statusValue.getSelectedIndex();
                 }
                 if (dateCheck.isSelected()) {
@@ -281,10 +295,13 @@ public class TimKiem extends javax.swing.JFrame {
                     phone = phoneValue.getText();
                 }
                 if (addressCheck.isSelected()) {
-                    address = addressValue.getText();
+                    address = addressCus.getText();
+                }
+                if(usernameCheck.isSelected()){
+                    user = username.getText();
                 }
 
-                ArrayList<KhachHang> data = khbus.searchData(id, name, status, date, phone, address);
+                ArrayList<KhachHang> data = khbus.searchData(id, name, status, date, phone, address,user);
                 loadTable(data);
             }
 
@@ -303,7 +320,7 @@ public class TimKiem extends javax.swing.JFrame {
     }
 
     private void initTable() {
-        String[] header = {"Mã khách hàng", "Tên khách hàng", "Ngày sinh", "Địa chỉ", "Sdt", "Trạng Thái"};
+        String[] header = {"Mã khách hàng", "Tên khách hàng", "Ngày sinh", "Địa chỉ", "Sdt","Tên đăng nhập","Mật khẩu", "Trạng Thái"};
         DefaultTableModel defaults = (DefaultTableModel) table.getModel();
         Arrays.stream(header).forEach(s -> {
             defaults.addColumn(s);
@@ -324,13 +341,15 @@ public class TimKiem extends javax.swing.JFrame {
         removeAllTableData();
         for(KhachHang arr: data)
         {
-            Object [] arrO = new Object[6];
+            Object [] arrO = new Object[8];
             arrO[0] = arr.getMaKhachHang();
             arrO[1] = arr.getTenKhachHang();
             arrO[2] = arr.getNgaySinh().toString();
             arrO[3] = arr.getDiaChi();
             arrO[4] = arr.getSDT();
-            arrO[5] = arr.isTrangThai();
+            arrO[5] = arr.getTenDangNhap();
+            arrO[6] = arr.getMatKhau();
+            arrO[7] = arr.isTrangThai();
             defaults.addRow(arrO);
         }
     }

@@ -52,7 +52,7 @@
               <Color blue="ff" green="99" red="33" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Vui l&#xf2;ng ch&#x1ecd;n ch&#x1ee9;c n&#x103;ng c&#x1ea7;n d&#xf9;ng"/>
+            <Property name="text" type="java.lang.String" value="C&#x1eed;a H&#xe0;ng S&#xe1;ch Online"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

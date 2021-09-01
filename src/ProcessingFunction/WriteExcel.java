@@ -480,9 +480,12 @@ public class WriteExcel {
             row.createCell(2, CellType.STRING).setCellValue("Ngày sinh");
             row.createCell(3, CellType.STRING).setCellValue("Địa Chỉ");
             row.createCell(4, CellType.STRING).setCellValue("SĐT");
-            row.createCell(5, CellType.BOOLEAN).setCellValue("Trạng Thái");
+            row.createCell(5, CellType.STRING).setCellValue("Tên Đăng Nhập");
+            row.createCell(6, CellType.STRING).setCellValue("Mật Khẩu");
+            row.createCell(7, CellType.BOOLEAN).setCellValue("Trạng Thái");
 
             for (KhachHang kh : data) {
+                
                 rowNum++;
                 row = sheet.createRow(rowNum);
                 row.createCell(0, CellType.NUMERIC).setCellValue(kh.getMaKhachHang());
@@ -490,7 +493,9 @@ public class WriteExcel {
                 row.createCell(2, CellType.STRING).setCellValue(kh.getNgaySinh().toString());
                 row.createCell(3, CellType.STRING).setCellValue(kh.getDiaChi());
                 row.createCell(4, CellType.STRING).setCellValue(kh.getSDT());
-                row.createCell(5, CellType.BOOLEAN).setCellValue(kh.isTrangThai());
+                row.createCell(5, CellType.STRING).setCellValue(kh.getTenDangNhap());
+                row.createCell(6, CellType.STRING).setCellValue(kh.getMatKhau());
+                row.createCell(7, CellType.BOOLEAN).setCellValue(kh.isTrangThai());
             }
 
             for (int i = 0; i < rowNum; i++) {

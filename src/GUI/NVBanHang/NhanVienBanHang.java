@@ -5,19 +5,15 @@
  */
 package GUI.NVBanHang;
 
-import GUI.Admin.*;
 import DTO.NhanVien;
 import GUI.LoginAdmin.Login;
 import GUI.QLHoaDon.QuanLyHoaDon;
 import GUI.QLKhachHang.QuanLyKhachHang;
 import GUI.QLKhuyenMai.QuanLyKhuyenMai;
 import GUI.QLNhanVien.QuanLyNhanVien;
-import GUI.QLPhieuNhap.QuanLyPhieuNhap;
 import GUI.QLSach.QuanLySach;
-import GUI.QLTaiKhoanKH.QuanLyTaiKhoan;
 import GUI.QLTheLoai.QuanLyTheLoai;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
@@ -34,7 +30,6 @@ public class NhanVienBanHang extends javax.swing.JFrame {
     JPanel book = new QuanLySach();
     JPanel bill = new QuanLyHoaDon();
     JPanel receipt = null;
-    JPanel accountCus = new QuanLyTaiKhoan();
     JPanel staff = new QuanLyNhanVien();
     JPanel supplier = new GUI.QLNhaCungCap.QuanLyNhaCungCap();
     JPanel customer = new QuanLyKhachHang();
