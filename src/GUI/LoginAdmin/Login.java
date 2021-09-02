@@ -8,6 +8,7 @@ package GUI.LoginAdmin;
 import BUS.NhanVienBus;
 import GUI.Admin.Admin;
 import GUI.NVBanHang.NhanVienBanHang;
+import GUI.NVQuanKho.NhanVienQuanKho;
 import ProcessingFunction.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -190,14 +191,7 @@ public class Login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, result);
 
                 if (result.compareTo("Đăng nhập thành công") == 0) {
-                    int right = nhanvienbus.getRightOfStaff(username.getText());
-                    if (right == 1) {
-                        new Admin(nhanvienbus.getStaffByUserName(username.getText())).setVisible(true);
-                        dispose();
-                    } else if (right == 2) {
-                        new NhanVienBanHang(nhanvienbus.getStaffByUserName(username.getText())).setVisible(true);
-                        dispose();
-                    }
+                    loginAdmin();
                 }
             }
         });
@@ -238,14 +232,7 @@ public class Login extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, result);
 
                     if (result.compareTo("Đăng nhập thành công") == 0) {
-                        int right = nhanvienbus.getRightOfStaff(username.getText());
-                        if (right == 1) {
-                            new Admin(nhanvienbus.getStaffByUserName(username.getText())).setVisible(true);
-                            dispose();
-                        } else if (right == 2) {
-                            new NhanVienBanHang(nhanvienbus.getStaffByUserName(username.getText())).setVisible(true);
-                            dispose();
-                        }
+                        loginAdmin();
                     }
                 }
             }
@@ -264,5 +251,19 @@ public class Login extends javax.swing.JFrame {
             return false;
         }
         return true;
+    }
+
+    public void loginAdmin() {
+        int right = nhanvienbus.getRightOfStaff(username.getText());
+        if (right == 1) {
+            new Admin(nhanvienbus.getStaffByUserName(username.getText())).setVisible(true);
+            dispose();
+        } else if (right == 2) {
+            new NhanVienBanHang(nhanvienbus.getStaffByUserName(username.getText())).setVisible(true);
+            dispose();
+        } else if (right == 3) {
+            new NhanVienQuanKho(nhanvienbus.getStaffByUserName(username.getText())).setVisible(true);
+            dispose();
+        }
     }
 }

@@ -253,6 +253,10 @@ public class QuanLyPhieuNhap extends javax.swing.JPanel {
                         break;
                     }
                     case "Nhập Excel": {
+                        if(nv.getMaQuyen() != 1){
+                            JOptionPane.showMessageDialog(null, "Bạn không có đủ quyền để dung chức năng này");
+                            return;
+                        }
                         ProcessingFunction.ReadExcel read = new ReadExcel();
                         read.ReadExcelReceipt();
                         break;

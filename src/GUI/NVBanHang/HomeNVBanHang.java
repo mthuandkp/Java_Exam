@@ -33,23 +33,62 @@ public class HomeNVBanHang extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(1120, 660));
         setPreferredSize(new java.awt.Dimension(1120, 640));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 72)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(204, 0, 204));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Nhân viên Bán hàng");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 1120, 190));
+        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(153, 51, 255));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Admin/book.png"))); // NOI18N
+        jButton2.setText("Quản Lý Sách");
+        jButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 290, 70));
+
+        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(153, 51, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Admin/paid_bill_64px.png"))); // NOI18N
+        jButton1.setText("Quản Lý Hóa Đơn");
+        jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 290, 75));
+
+        jButton6.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(153, 51, 255));
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Admin/customer.png"))); // NOI18N
+        jButton6.setText("Quản Lý Khách Hàng");
+        jButton6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 100, 290, 70));
+
+        jButton8.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jButton8.setForeground(new java.awt.Color(153, 51, 255));
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Admin/sale_64px.png"))); // NOI18N
+        jButton8.setText("Quản Lý Khuyến Mãi");
+        jButton8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 390, 290, 90));
+
+        jButton10.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jButton10.setForeground(new java.awt.Color(153, 51, 255));
+        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Admin/keyboard_64px.png"))); // NOI18N
+        jButton10.setText("Quản Lý Thể Loại");
+        jButton10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 170, 290, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton8;
     // End of variables declaration//GEN-END:variables
 
     private void initialization() {

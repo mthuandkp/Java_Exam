@@ -3,19 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI.NVBanHang;
+package GUI.NVQuanKho;
 
+import GUI.Admin.*;
 import DTO.NhanVien;
-import GUI.Admin.Home;
 import GUI.LoginAdmin.Login;
 import GUI.QLHoaDon.QuanLyHoaDon;
 import GUI.QLKhachHang.QuanLyKhachHang;
 import GUI.QLKhuyenMai.QuanLyKhuyenMai;
+import GUI.QLNhaCungCap.QuanLyNhaCungCap;
 import GUI.QLNhanVien.QuanLyNhanVien;
+import GUI.QLPhieuNhap.QuanLyPhieuNhap;
 import GUI.QLSach.QuanLySach;
 import GUI.QLTheLoai.QuanLyTheLoai;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
@@ -27,8 +28,7 @@ import javax.swing.JPanel;
  *
  * @author MINHTHUAN
  */
-public class NhanVienBanHang extends javax.swing.JFrame {
-    JPanel home = new HomeNVBanHang();
+public class NhanVienQuanKho extends javax.swing.JFrame {
     JPanel book = new QuanLySach();
     JPanel bill = new QuanLyHoaDon();
     JPanel receipt = null;
@@ -37,36 +37,22 @@ public class NhanVienBanHang extends javax.swing.JFrame {
     JPanel customer = new QuanLyKhachHang();
     JPanel sale = new QuanLyKhuyenMai();
     JPanel theloai = new QuanLyTheLoai();
-    NhanVien nv = null;
     
     /**
      * Creates new form Admin
      */
-    public NhanVienBanHang() {
+    public NhanVienQuanKho() {
         initComponents();
         initialization();
-        addJPanelIntoContent(home);
-        //performEvent();
+        
     }
     
-    public NhanVienBanHang(NhanVien nhanvien) {
-        setNv(nhanvien);
+    public NhanVienQuanKho(NhanVien nv) {
         initComponents();
         initialization();
-        addJPanelIntoContent(home);
         performEvent(nv);
         displayNameStaff(nv);
     }
-
-    public NhanVien getNv() {
-        return nv;
-    }
-
-    public void setNv(NhanVien nv) {
-        this.nv = nv;
-    }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -82,12 +68,9 @@ public class NhanVienBanHang extends javax.swing.JFrame {
         logout = new javax.swing.JButton();
         hello = new javax.swing.JLabel();
         leftControl = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        homeBtn = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
         content = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -107,7 +90,7 @@ public class NhanVienBanHang extends javax.swing.JFrame {
 
         hello.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
         hello.setForeground(new java.awt.Color(0, 153, 255));
-        hello.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        hello.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         hello.setText("Xin chào :");
 
         javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
@@ -115,16 +98,16 @@ public class NhanVienBanHang extends javax.swing.JFrame {
         headerLayout.setHorizontalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerLayout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(hello, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 620, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 632, Short.MAX_VALUE)
                 .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         headerLayout.setVerticalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(logout, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-                .addComponent(hello, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
+            .addGroup(headerLayout.createSequentialGroup()
+                .addComponent(hello, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(logout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         background.add(header, new org.netbeans.lib.awtextra.AbsoluteConstraints(-2, 0, 1410, 60));
@@ -132,30 +115,21 @@ public class NhanVienBanHang extends javax.swing.JFrame {
         leftControl.setBackground(new java.awt.Color(255, 255, 255));
         leftControl.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(153, 51, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Admin/paid_bill_64px.png"))); // NOI18N
-        jButton1.setText("Quản Lý Hóa Đơn");
-        jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        leftControl.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 290, 75));
+        jButton3.setBackground(new java.awt.Color(255, 255, 255));
+        jButton3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(153, 51, 255));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Admin/receipt_dollar_64px.png"))); // NOI18N
+        jButton3.setText("Quản Lý Phiếu Nhập");
+        jButton3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        leftControl.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 290, 75));
 
-        jButton6.setBackground(new java.awt.Color(255, 255, 255));
-        jButton6.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(153, 51, 255));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Admin/customer.png"))); // NOI18N
-        jButton6.setText("Quản Lý Khách Hàng");
-        jButton6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        leftControl.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 290, 70));
-
-        jButton8.setBackground(new java.awt.Color(255, 255, 255));
-        jButton8.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton8.setForeground(new java.awt.Color(153, 51, 255));
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Admin/sale_64px.png"))); // NOI18N
-        jButton8.setText("Quản Lý Khuyến Mãi");
-        jButton8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        leftControl.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 290, 90));
+        jButton9.setBackground(new java.awt.Color(255, 255, 255));
+        jButton9.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jButton9.setForeground(new java.awt.Color(153, 51, 255));
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Admin/supplier_64px.png"))); // NOI18N
+        jButton9.setText("Quản Lý Nhà Cung Cấp");
+        jButton9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        leftControl.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 290, 75));
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -164,25 +138,9 @@ public class NhanVienBanHang extends javax.swing.JFrame {
         jButton2.setText("Quản Lý Sách");
         jButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        leftControl.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 75, 290, 70));
+        leftControl.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 70));
 
-        homeBtn.setBackground(new java.awt.Color(255, 255, 255));
-        homeBtn.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        homeBtn.setForeground(new java.awt.Color(153, 51, 255));
-        homeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Admin/google_home_64px.png"))); // NOI18N
-        homeBtn.setText("Trang Chủ");
-        homeBtn.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        leftControl.add(homeBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 80));
-
-        jButton10.setBackground(new java.awt.Color(255, 255, 255));
-        jButton10.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton10.setForeground(new java.awt.Color(153, 51, 255));
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Admin/keyboard_64px.png"))); // NOI18N
-        jButton10.setText("Quản Lý Thể Loại");
-        jButton10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        leftControl.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 290, 90));
-
-        background.add(leftControl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 290, 550));
+        background.add(leftControl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 290, 480));
 
         content.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -232,13 +190,13 @@ public class NhanVienBanHang extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NhanVienBanHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NhanVienQuanKho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NhanVienBanHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NhanVienQuanKho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NhanVienBanHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NhanVienQuanKho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NhanVienBanHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NhanVienQuanKho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -246,7 +204,7 @@ public class NhanVienBanHang extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NhanVienBanHang().setVisible(true);
+                new NhanVienQuanKho().setVisible(true);
             }
         });
     }
@@ -256,12 +214,9 @@ public class NhanVienBanHang extends javax.swing.JFrame {
     private javax.swing.JPanel content;
     private javax.swing.JPanel header;
     private javax.swing.JLabel hello;
-    private javax.swing.JButton homeBtn;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton9;
     private javax.swing.JPanel leftControl;
     private javax.swing.JButton logout;
     // End of variables declaration//GEN-END:variables
@@ -298,7 +253,7 @@ public class NhanVienBanHang extends javax.swing.JFrame {
                 setBackgroundForButtonMenu(e.getActionCommand());
                 switch(e.getActionCommand()){
                     case "Quản Lý Sách":{
-                        book = new QuanLySach(nv);
+                        
                         addJPanelIntoContent(book);
                         break;
                     }
@@ -306,8 +261,21 @@ public class NhanVienBanHang extends javax.swing.JFrame {
                         addJPanelIntoContent(new QuanLyHoaDon(nv));
                         break;
                     }
+                    case "Quản Lý Phiếu Nhập":{
+                        receipt = new QuanLyPhieuNhap(nv);
+                        addJPanelIntoContent(receipt);
+                        break;
+                    }
+                    case "Quản Lý Nhân Viên":{
+                        addJPanelIntoContent(staff);
+                        break;
+                    }
+                    case "Quản Lý Nhà Cung Cấp":{
+                        supplier = new QuanLyNhaCungCap(nv);
+                        addJPanelIntoContent(supplier);
+                        break;
+                    }
                     case "Quản Lý Khách Hàng":{
-                        customer = new QuanLyKhachHang(nv);
                         addJPanelIntoContent(customer);
                         break;
                     }
@@ -315,12 +283,8 @@ public class NhanVienBanHang extends javax.swing.JFrame {
                         addJPanelIntoContent(sale);
                         break;
                     }
-                    case "Trang Chủ":{
-                        addJPanelIntoContent(home);
-                        break;
-                    }
+                    
                     case "Quản Lý Thể Loại":{
-                        theloai = new QuanLyTheLoai(nv);
                         addJPanelIntoContent(theloai);
                         break;
                     }
@@ -335,17 +299,6 @@ public class NhanVienBanHang extends javax.swing.JFrame {
                    }
                }
         );
-         //Them su kien tu menu trang chu
-        
-        for(Component c : content.getComponents()){
-            if(c instanceof Home){
-                for(Component c1 : ((Home) c).getComponents()){
-                    ((JButton)c1).addActionListener(ac);
-                }
-            }
-        }
-        homeBtn.addActionListener(ac);
-        homeBtn.setActionCommand(homeBtn.getActionCommand());
     }
 
     private void displayNameStaff(NhanVien nv) {

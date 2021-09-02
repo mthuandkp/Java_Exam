@@ -10,6 +10,7 @@ import GUI.LoginAdmin.Login;
 import GUI.QLHoaDon.QuanLyHoaDon;
 import GUI.QLKhachHang.QuanLyKhachHang;
 import GUI.QLKhuyenMai.QuanLyKhuyenMai;
+import GUI.QLNhaCungCap.QuanLyNhaCungCap;
 import GUI.QLNhanVien.QuanLyNhanVien;
 import GUI.QLPhieuNhap.QuanLyPhieuNhap;
 import GUI.QLSach.QuanLySach;
@@ -340,16 +341,13 @@ public class Admin extends javax.swing.JFrame {
                         addJPanelIntoContent(receipt);
                         break;
                     }
-                    /*case "Quản Lý Tài Khoản":{
-                        addJPanelIntoContent(accountCus);
-                        break;
-                    }*/
                     case "Quản Lý Nhân Viên":{
                         staff = new QuanLyNhanVien(nv);
                         addJPanelIntoContent(staff);
                         break;
                     }
                     case "Quản Lý Nhà Cung Cấp":{
+                        supplier = new QuanLyNhaCungCap(nv);
                         addJPanelIntoContent(supplier);
                         break;
                     }

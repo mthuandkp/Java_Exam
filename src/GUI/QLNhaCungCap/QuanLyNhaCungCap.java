@@ -7,6 +7,7 @@ package GUI.QLNhaCungCap;
 
 import BUS.NhaCungCapBus;
 import DTO.NhaCungCap;
+import DTO.NhanVien;
 import ProcessingFunction.ReadExcel;
 import ProcessingFunction.WriteExcel;
 import Test.*;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -25,10 +27,20 @@ import javax.swing.table.DefaultTableModel;
  */
 public class QuanLyNhaCungCap extends javax.swing.JPanel {
     NhaCungCapBus nccbus = new NhaCungCapBus();
+    NhanVien nv = null;
     /**
      * Creates new form DefaultPanel
      */
     public QuanLyNhaCungCap() {
+        initComponents();
+        initialization();
+        performEvent();
+        initTable();
+        loadTableData();
+    }
+    
+    public QuanLyNhaCungCap(NhanVien nv) {
+        this.nv = nv;
         initComponents();
         initialization();
         performEvent();
@@ -153,10 +165,18 @@ public class QuanLyNhaCungCap extends javax.swing.JPanel {
             public void actionPerformed(ActionEvent e) {
                 switch(e.getActionCommand()){
                     case "Thêm":{
+                        if(nv.getMaQuyen() != 1){
+                            JOptionPane.showMessageDialog(null, "Bạn không có đủ quyền để dung chức năng này");
+                            return;
+                        }
                         new ThemNhaCungCap().setVisible(true);
                         break;
                     }
                     case "Sửa":{
+                        if(nv.getMaQuyen() != 1){
+                            JOptionPane.showMessageDialog(null, "Bạn không có đủ quyền để dung chức năng này");
+                            return;
+                        }
                         new SuaNhaCungCap().setVisible(true);
                         break;
                     }
@@ -165,6 +185,10 @@ public class QuanLyNhaCungCap extends javax.swing.JPanel {
                         break;
                     }
                     case "Nhập Excel":{
+                        if(nv.getMaQuyen() != 1){
+                            JOptionPane.showMessageDialog(null, "Bạn không có đủ quyền để dung chức năng này");
+                            return;
+                        }
                         ReadExcel read = new ReadExcel();
                         read.readExcelSupplier();
                         break;
