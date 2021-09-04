@@ -3,7 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/mthuan/NetBeansProjects/Java_ThiHK/src/ProcessingFunction/ConnectionDB.java</file>
+            <file>file:/home/mthuan/NetBeansProjects/Java_ThiHK/src/ProcessingFunction/ThongKe.java</file>
+            <file>file:/home/mthuan/NetBeansProjects/Java_ThiHK/src/Test/TestCode.java</file>
+            <file>file:/home/mthuan/NetBeansProjects/Java_ThiHK/src/GUI/LoginCus/Register_1.java</file>
+            <file>file:/home/mthuan/NetBeansProjects/Java_ThiHK/src/GUI/QLHoaDon/QuanLyHoaDon.java</file>
+            <file>file:/home/mthuan/NetBeansProjects/Java_ThiHK/src/GUI/QLKhachHang/ThongKe.java</file>
+            <file>file:/home/mthuan/NetBeansProjects/Java_ThiHK/src/BUS/KhachHangBus.java</file>
         </group>
     </open-files>
 </project-private>

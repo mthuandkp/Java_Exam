@@ -95,9 +95,9 @@ public class KhachHangBus {
         
         for(Integer[] value : tmp){
             String []str = new String[3];
-            str[0] = String.valueOf(value[0]);
+            str[2] = String.valueOf(value[0]);
             str[1] = "khachhang";
-            str[2] = String.valueOf(value[1]);
+            str[0] = String.valueOf(value[1]);
             result.add(str);
         }
         

@@ -450,7 +450,7 @@ public class SuaSach extends javax.swing.JFrame {
                     bookType.setSelectedIndex(0);
                     bookSale.setText("");
                     bookStatus.setText("");
-                    image.setIcon(new ImageIcon(ProcessingFunction.CopyImage.resizeImage(".\\src\\Book_Image\\empty.png", image)));
+                    image.setIcon(new ImageIcon(ProcessingFunction.CopyImage.resizeImage("./src/Book_Image/empty.png", image)));
                     nameImage.setText("empty.png");
                     return;
                 }
@@ -490,9 +490,6 @@ public class SuaSach extends javax.swing.JFrame {
         image.setIcon(imgIcon);
         nameImage.setText(ProcessingFunction.CopyImage.getNameImage(url));
         ProcessingFunction.CopyImage.copyImage(url);
-        
-        
-        System.out.println("URL = " + url);
     }
 
     public int getIdFromType(String s) {

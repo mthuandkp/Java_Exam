@@ -63,39 +63,7 @@ public class WritePdf {
     }
     
     public WritePdf() {
-        String url = "C:\\Users\\MINHTHUAN\\Documents\\NetBeansProjects\\DoAnCuaHangSach\\src\\TmpData\\test.pdf";
-        Document document = new Document();
-        try {
-            PdfWriter write = PdfWriter.getInstance(document, new FileOutputStream(new File(url)));
-            document.open();
-            Paragraph phr = new Paragraph("Hello world this is a test pdf file");
-            document.add(phr);
-            /*PdfPTable table = new PdfPTable(3);
-            table.setWidthPercentage(105);
-            table.setSpacingBefore(52f);
-            table.setSpacingAfter(12f);
-            
-            float colWidth[] = {1f,1f,1f};
-            table.setWidths(colWidth);
-            
-            PdfPCell c1 = new PdfPCell(new Paragraph("Dong 1"));
-            PdfPCell c2 = new PdfPCell(new Paragraph("Dong 2"));
-            PdfPCell c3 = new PdfPCell(new Paragraph("Dong 3"));
-            
-            table.addCell(c1);
-            table.addCell(c2);
-            table.addCell(c3);
-            table.addCell(c1);
-            table.addCell(c2);
-            table.addCell(c3);
-             
-            document.add(table);*/
-            
-            document.close();
-            write.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        
     }
     
     
@@ -106,16 +74,13 @@ public class WritePdf {
         String nameStaff = nvbus.getNameById(pn.getMaNhanVien());
         String nameSupplier = nccbus.getNameById(pn.getMaNhaCungCap());
         //---------------------------------------------------//
-        String url = "C:\\Users\\MINHTHUAN\\Documents\\NetBeansProjects\\DoAnCuaHangSach\\src\\TmpData\\test.pdf";
+        String url = "./src/PDF/PhieuNhap.pdf";
         Document document = null;
         
         try {
-            /*url = getFile();
-            if(url == null){
-                return;
-            }*/
+            
             document = new Document();
-            BaseFont bf = BaseFont.createFont("C:\\Windows\\Fonts\\times.ttf",BaseFont.IDENTITY_H,BaseFont.EMBEDDED);
+            BaseFont bf = BaseFont.createFont("./src/Font/times.ttf",BaseFont.IDENTITY_H,BaseFont.EMBEDDED);
             PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(new File(url)));
             document.open();
             //Ghi thong tin phieu nhap [MaPhieuNhap ,Ten NhanVien,Ten NhaCungCap,Ngaya,Gio]
@@ -149,7 +114,7 @@ public class WritePdf {
                 table.addCell(new PdfPCell(new Paragraph(String.valueOf(sachbus.getNameById(ctpn.getMaSach())),new Font(bf))));
                 table.addCell(new PdfPCell(new Paragraph(ProcessingFunction.Other.convetNumberToMoney(String.valueOf(ctpn.getGia())),new Font(bf))));
                 table.addCell(new PdfPCell(new Paragraph(String.valueOf(ctpn.getSoLuong()),new Font(bf))));
-                table.addCell(new PdfPCell(Image.getInstance(".\\src\\Book_Image\\" + ctpn.getHinhAnh())));
+                table.addCell(new PdfPCell(Image.getInstance("./src/Book_Image/" + ctpn.getHinhAnh())));
                 sum += ctpn.getGia() * ctpn.getSoLuong();
             }
             
@@ -186,14 +151,15 @@ public class WritePdf {
                 break;
             }
         }
+        
         //---------------------------------------------------//
-        String url = "C:\\Users\\MINHTHUAN\\Documents\\NetBeansProjects\\DoAnCuaHangSach\\src\\TmpData\\hoadon.pdf";
+        String url = "./src/PDF/hoadon.pdf";
         Document document = null;
         
         try {
             
             document = new Document();
-            BaseFont bf = BaseFont.createFont("C:\\Windows\\Fonts\\times.ttf",BaseFont.IDENTITY_H,BaseFont.EMBEDDED);
+            BaseFont bf = BaseFont.createFont("./src/Font/times.ttf",BaseFont.IDENTITY_H,BaseFont.EMBEDDED);
             PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(new File(url)));
             document.open();
             //Ghi thong tin phieu nhap [Mahoadon,tennhanvien,tenkhachhang,makhuyenmai,ngày,gio,trangthai]
@@ -228,7 +194,7 @@ public class WritePdf {
                 table.addCell(new PdfPCell(new Paragraph(String.valueOf(sachbus.getNameById(ctpn.getMaSach())),new Font(bf))));
                 table.addCell(new PdfPCell(new Paragraph(ProcessingFunction.Other.convetNumberToMoney(String.valueOf(sachbus.getPriceBookFromId(ctpn.getMaSach()))),new Font(bf))));
                 table.addCell(new PdfPCell(new Paragraph(String.valueOf(ctpn.getSoLuong()),new Font(bf))));
-                table.addCell(new PdfPCell(Image.getInstance(".\\src\\Book_Image\\" + sachbus.getImageById(ctpn.getMaSach()))));
+                table.addCell(new PdfPCell(Image.getInstance("./src/Book_Image/" + sachbus.getImageById(ctpn.getMaSach()))));
                 sum += sachbus.getPriceBookFromId(ctpn.getMaSach()) * ctpn.getSoLuong();
             }
             
@@ -239,7 +205,7 @@ public class WritePdf {
             writer.close();
             JOptionPane.showMessageDialog(null, "Ghi thành công");
         } catch (Exception e) {
-            
+            e.printStackTrace();
         }
         
         

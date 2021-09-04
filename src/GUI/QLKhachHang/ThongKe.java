@@ -6,6 +6,7 @@
 package GUI.QLKhachHang;
 
 import BUS.KhachHangBus;
+import java.util.ArrayList;
 
 /**
  *
@@ -17,10 +18,19 @@ public class ThongKe extends javax.swing.JFrame {
      * Creates new form ThongKe
      */
     public ThongKe() {
+        ArrayList<String []> str = new ArrayList<>();
+        String str1[] = {"20","Khach hang","2"};
+        String str2[] = {"41","Khach hang","2"};
+        String str3[] = {"14","Khach hang","1"};
+        str.add(str1);
+        str.add(str2);
+        str.add(str3);
+        
+        
         initComponents();
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(HIDE_ON_CLOSE);
-        ProcessingFunction.ThongKe.barChart(khbus.getChartData(), "Thống kê khách hàng theo lứa tuổi", "Khách Hàng", "Độ Tuổi", barchart);
+        ProcessingFunction.ThongKe.barChart(khbus.getChartData(), "Thống kê khách hàng theo lứa tuổi", "Độ Tuổi"," SL Khách Hàng", barchart);
     }
 
     /**
